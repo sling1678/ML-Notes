@@ -144,7 +144,7 @@
         </program>
         <figure xml:id="fig-descriptive-statistics-histogram">
           <caption>Histogram with data in range 1 to 10 with bin size 2.</caption>
-          <image source="./assets/figs/essential-probability-and-statistics/histogram.png">
+          <image source="./images/essential-probability-and-statistics/histogram.png">
             <shortdescription>Display of a histogram with data in range 1 to 10 with bin size 2.</shortdescription>
           </image>
         </figure>
