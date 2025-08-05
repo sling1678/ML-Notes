@@ -7,16 +7,16 @@
   <bibinfo>
   
     <author>
-      <personname>You</personname>
-      <department>Your department</department>
-      <institution>Your institution</institution>
+      <personname>Samuel Ling</personname>
+      <department>Physics</department>
+      <institution>Truman State University</institution>
     </author>
     <date>
       <today />
     </date>
 
     <website>
-      <url href="https://pretextbook.org">My Website</url>
+      <url href="https://pretextbook.org">www.physicsbootcamp.org</url>
     </website>
 
     <copyright>
