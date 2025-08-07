@@ -1,0 +1,186 @@
+<section xml:id="sec-useful-descriptive-statistics-tools"  xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Useful Descriptive Statistics Tools</title>
+  <introduction>
+  <p>
+    Here, I want provide a list of data analysis tools that have emerged as important resources for data scientists and can be very useful for machine learning engineer. Among many resources, let us look at just a few important ones.
+  </p>
+  </introduction>
+  <subsection xml:id="subsec-Pandas">
+    <title>Pandas</title>
+      <introduction>
+        <p>
+          Pandas is a powerful Python library for data manipulation and analysis. It provides two core data structures:
+          <ol>
+            <li>
+              <p>
+                <alert>Series</alert>: A one-dimensional labeled array.
+              </p>
+            </li>
+            <li>
+              <p>
+                <alert>DataFrame</alert>: A two-dimensional labeled table (think Excel or SQL table in Python).
+              </p>
+            </li>
+          </ol>
+        </p>
+        <p> 
+          Pandas is designed for <alert>cleaning</alert>, <alert>transforming</alert>, <alert>analyzing</alert>, and <alert>visualizing</alert> data efficiently. Whether you're exploring a dataset, preprocessing features for machine learning, or analyzing business metrics, Pandas will likely be your go-to tool.
+        </p>
+        </introduction>       
+        <p>
+          <alert>Why Use Pandas?</alert>
+        </p>        
+        <ul>
+          <li>
+            <p>
+              Handles structured data easily.
+            </p>
+          </li>
+          <li>
+            <p>
+              Works well with CSV, Excel, JSON, SQL, and more.
+            </p>
+          </li>
+          <li>
+            <p>
+              Integrates seamlessly with NumPy, Matplotlib, Scikit-learn, and others.
+            </p>
+          </li>
+          <li>
+            <p>
+              Fast, expressive, and readable.
+            </p>
+          </li>
+        </ul>
+        <p>
+            <alert>A Simple Example</alert>: Let's walk through a simple example of a data that is presented to us in a table form with each column referring to one property or feature or variables in the data. Each row is one datapoint, with values of different variables across the columns. You can feed that data as a Python dictionay or a csv file or an excel file. Here, we keep it simple and feed the data as a dictionary.
+        </p>
+        <program language="Python">
+            <input>
+                import pandas as pd
+                data = {
+                    'Name': ['Alice', 'Bob', 'Carol', 'Dave'],
+                    'Age': [25, 30, 27, 22],
+                    'Score': [85.5, 90.0, 88.0, 76.5]
+                }
+                df = pd.DataFrame(data)
+                print(df)
+            </input>
+        </program>
+        
+        <p>
+            This will display the data in a nice table format as in <xref ref="tab-printout-of-dataframe-as-table"/>
+        </p>
+        <table xml:id="tab-printout-of-dataframe-as-table">
+            <title>Printout of the DataFrame df</title>
+            <tabular>
+                <row>
+                    <cell></cell> <cell>Name</cell> <cell>Age</cell> <cell>Score</cell>
+                </row>
+                <row>
+                    <cell>0</cell> <cell>Alice</cell> <cell>25</cell> <cell>85.5</cell>
+                </row>                
+                <row>
+                    <cell>1</cell> <cell>Bob</cell> <cell>30</cell> <cell>90.0</cell>
+                </row>
+                <row>
+                    <cell>2</cell> <cell>Carol</cell> <cell>27</cell> <cell>88.0</cell>
+                </row>
+                <row>
+                    <cell>3</cell> <cell>Dave</cell> <cell>22</cell> <cell>76.5</cell>
+                </row>
+            </tabular>
+        </table>
+        <p>
+            A great advantage of Pandas DataFrame is that it comes with numerous methods that you can call on a DataFrame to perform various tasks. I will present only a small sample of them and you can go to the <url href="https://pandas.pydata.org/" visual="pandas.pydata.org">Pandas website</url> to expand your knowledge.
+        </p>
+        <p>
+            One thing you can do is to examine data quickly by following commands: 
+            <ol>
+                <li>
+                    <p>
+                        df.head(n) : diplay n data rows at the top.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        df.tail(m) : display m data rows from the bottom.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        df.shape : display the dimensions of the DataFrame; note here you do not have () at the end.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        df.columns : names of columns of the DataFrame as a list of strings.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        df.info() : Summary of data types and memory usage.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        df.describe() : Basic statistics for numeric columns.
+                    </p>
+                </li>
+            </ol>
+        </p>
+        <p>
+            When I run df.describe() on the DataFrame df we set up above, it produces the descriptive statics of the numerical data, i.e., columns Age and Score.
+        </p>
+        <table>
+            <title>Output of df.describe()</title>
+            <tabular>
+                <row>
+                    <cell></cell> <cell>Age</cell> <cell>Score</cell>
+                </row>
+                <row>
+                    <cell>count</cell> <cell>4.000000</cell> <cell>4.000000</cell>
+                </row>
+                <row>
+                    <cell>mean</cell> <cell>26.000000</cell> <cell>85.000000</cell>
+                </row>
+                <row>
+                    <cell>std</cell> <cell>3.366502</cell> <cell>5.958188</cell>
+                </row>
+                <row>
+                    <cell>min</cell> <cell>22.000000</cell> <cell>76.500000</cell>
+                </row>
+                <row>
+                    <cell>25%</cell> <cell>24.250000</cell> <cell>83.250000</cell>
+                </row>
+                <row>
+                    <cell>50%</cell> <cell>26.000000</cell> <cell>86.750000</cell>
+                </row>
+                <row>
+                    <cell>75%</cell> <cell>27.750000</cell> <cell>88.500000</cell>
+                </row>
+                <row>
+                    <cell>max</cell> <cell>30.000000</cell> <cell>90.000000</cell>
+                </row>
+
+            </tabular>
+        </table>
+        <p>
+            Perhaps the strongest case for using Pandas is its ability to manipulate and transform data very rapidly with simple commands which can be piped into each other. Let's see some examples of this power of Pandas.
+        </p>
+        <p>
+            You can select one column of interest or multiple columns into a new DataFrame:
+            <p></p>
+            <p>
+                score = df['Score']
+            </p>
+            <p>
+                age_score = df['Age', 'Score']
+            </p>
+        </p>
+
+   
+  </subsection>
+
+
+</section>

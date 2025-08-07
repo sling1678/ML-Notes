@@ -60,29 +60,14 @@
       </p>
     </li>
 
+
     <li>
       <p>
-        <alert>Range</alert>: Range of data is simply Max minus Min of the data. Hence, the range of <m>\{2,1,3,5,7\}</m> will be <m>7-1=6</m>. It gives a measure of hw widely do the values in the data lie.
-      </p>
-    </li>
-    <li>
-      <p>
-        <alert>Quartiles</alert>: First, we sort the data, then we divide data into 4 parts. The first quartile (Q1), also known as the lower quartile, represents the 25th percentile, meaning 25% of the data falls below this value. The second quartile (Q2), also known as the median, represents the 50th percentile, meaning 50% of the data falls below this value. The third quartile (Q3), also known as the upper quartile,  represents the 75th percentile, meaning 75% of the data falls below this value. Finally, the fourth quartile (Q4) represents the top 25% of the values of the dataset. for simplicity, suppose the sorted dataset contains <m>\{1,1, 3,4, 5, 5, 7,8\}</m> Then <m>Q1 = \{1,1\}</m>, <m>Q2 = \{3,4\}</m>, <m>Q3 = \{5,5\}</m>, and <m>Q4 = \{7,8\}</m>.
-      </p>
-    </li>
-    <li>
-      <p>
-        <alert>Histogram</alert>: A histogram refers to a frequency distribution of values. It is usually presented as a plot with bins in which data may be distributed. Suppose you have data, whose values denoted by letter <m>x</m>, in the range from <m>0</m> to <m>10</m>. Then, with a bin size of <m>2</m>, you can distribute the data, with minimum value <m>0</m> and maximum value <m>10</m> in bins: <m>0\le x \lt 2</m>, <m>2\le x \lt 4</m>, <m>4\le x\lt 6</m>, <m>6\le x \lt 8</m>, <m>8\le x \lt 10</m>, <m>10\le x \lt 12</m>. Suppose, you have the following dataset <m>\{ 0, 2, 2, 3, 3, 6, 7, 7, 8, 10  \}</m> Then, you will get the following table showing how the data will be distributed in the bins.
+        <alert>Histogram</alert>: A histogram refers to a frequency distribution of values. It is usually presented as a plot with bins in which data may be distributed. Suppose you have data, whose values denoted by letter <m>x</m>, in the range from <m>0</m> to <m>10</m>. Then, with a bin size of <m>2</m>, you can distribute the data, with minimum value <m>0</m> and maximum value <m>10</m> in bins: <m>0\le x \lt 2</m>, <m>2\le x \lt 4</m>, <m>4\le x\lt 6</m>, <m>6\le x \lt 8</m>, <m>8\le x \lt 10</m>, <m>10\le x \lt 12</m>. Suppose, you have the following dataset <m>\{ 0, 2, 2, 3, 3, 6, 7, 7, 8, 10  \}</m> Then, you will get the table <xref ref="tab-Histogram-Table"/> showing how the data is distributed across the bins.
 
       </p>
-    </li>
-    <li>
-      <p>
-        <alert>Boxplot</alert>: Divide data into 4 parts
-      </p>
-    </li>
-  </ol>
-</p>
+    
+
         <table xml:id="tab-Histogram-Table">
           <title>Histogram</title>
           <tabular>
@@ -110,7 +95,7 @@
           </tabular>
         </table>
         <p>
-          Graphically, you would plot the frequency column against the Bin or the Range column. The following Python Code will produce the plot given below.
+          Graphically, you would plot the frequency column against the Bin or the Range column. The following Python Code will produce the plot given in <xref ref="fig-descriptive-statistics-histogram"/>. The visual picture obviously gives you a very direct way to see the pattern in the data, including a coarse view of the probability distribution of various values in the data.
         </p>
         
         <program language="python" line-numbers="yes">
@@ -119,27 +104,30 @@
 
             # Data
             data = [0, 2, 2, 3, 3, 6, 7, 7, 8, 10]
-
             # Desired bin size
             bin_size = 2
 
-            # Calculate bin edges
-            min_val = min(data)
-            max_val = max(data)
-            bins = np.arange(min_val, max_val + bin_size, bin_size)
+            def plot_histogram(data, bin_size=2):
+              # Calculate bin edges
+              min_val = min(data)
+              max_val = max(data)
+              bins = np.arange(min_val, max_val + bin_size, bin_size)
 
-            # Plotting the histogram
-            plt.hist(data, bins=bins, edgecolor='black', alpha=0.7)
+              # Plotting the histogram
+              plt.hist(data, bins=bins, edgecolor='black', alpha=0.7)
 
-            # Adding labels and title
-            plt.xlabel('Value')
-            plt.ylabel('Frequency')
-            plt.title(f'Histogram of Data with Bin Size = {bin_size}')
+              # Adding labels and title
+              plt.xlabel('Value')
+              plt.ylabel('Frequency')
+              plt.title(f'Histogram of Data with Bin Size = {bin_size}')
 
-            # Display the plot
-            plt.xticks(bins) # Optional: to show bin edges as x-axis ticks
-            plt.grid(axis='y', alpha=0.75) # Optional: add a grid for better readability
-            plt.show()
+              # Display the plot
+              plt.xticks(bins) # Optional: to show bin edges as x-axis ticks
+              plt.grid(axis='y', alpha=0.75) # Optional: add a grid for better readability
+              plt.show()
+              return None
+            
+            plot_histogram(data, bin_size)
 
         </program>
         <figure xml:id="fig-descriptive-statistics-histogram">
@@ -149,8 +137,65 @@
           </image>
         </figure>
 
+    </li>
 
+    <li>
+      <p>
+        <alert>Range and Quartiles</alert>: First, we sort the data.  Range of data is simply Max minus Min of the data. It gives a measure of how widely do the values in the data lie.  For quartiles, we then divide data into 4 parts. The first quartile (Q1), also known as the lower quartile, represents the 25th percentile, meaning 25% of the data falls below this value. The second quartile (Q2), also known as the median, represents the 50th percentile, meaning 50% of the data falls below this value. The third quartile (Q3), also known as the upper quartile,  represents the 75th percentile, meaning 75% of the data falls below this value. Finally, the fourth quartile (Q4) represents the top 25% of the values of the dataset. for simplicity, suppose the sorted dataset contains <m>\{1,1, 3,4, 5, 5, 7,8\}</m> Then <m>Q1 = 1</m>, <m>Q2 = 4</m>, <m>Q3 = 5</m>, and <m>Q4 = 8</m>.
+      </p>
+      <p>
+        A <alert>boxplot</alert> or a <alert>box-and-whisker plot</alert> is a compact way to display the min, quartiles and the max. We draw a box that spans the range from Q1 to Q3, called the <alert>interquartile (IQR)</alert> showing the middle <m>50\%</m> of the data. By using IQR with Q1 and Q3, we also define thresholds for spotting <alert>outliers</alert> in the data. The outliers are shown as points on boxplots as shown in <xref ref="fig-descriptive-statistics-boxplots"/>.
+      </p>
+      <p>
+        Example: Suppose we have the following dataset representing student scores on a quiz:
+        <me>
+          \text{scores} = [20, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 120, 150]
+        </me>
+        In this data, we can conclude: Median (Q2) = (75 + 80)/2 = 77.5, Q1 = median of lower half = 60, Q3 = median of upper half = 90. The IQR for the box will be IQR = Q3-Q1 = 30. We also can notice outliers in the data by calculating the lower bound for the data from:
+        <men xml:id="eqn-lower-and-upper-bounds-for-outliers">
+          \text{lower bound} = Q1 - 1.5 \times IQR = 60 - 1.5 \times 30 = 15,
+        </men>
+        <men xml:id="eqn-upper-and-upper-bounds-for-outliers">
+          \text{upper bound} = Q3 + 1.5 \times IQR = 90 + 1.5 \times 30 = 135,
+        </men>
+        Here, we see that the data of 150 is an outlier.
+      </p>
+      <p>
+        The following Python program will generate a good looking boxplot of the data. 
+        <program language="python" line-numbers="yes">
+          import matplotlib.pyplot as plt
+          import numpy as np
 
+          # Sample data
+          scores = [20, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 120, 150]
 
+          def gen_boxplot(data):
+            # Create the boxplot using matplotlib
+            plt.figure(figsize=(8, 4))
+            plt.boxplot(data, vert=False, patch_artist=True,
+                        boxprops=dict(facecolor='lightblue'),
+                        medianprops=dict(color='red'))
 
+            plt.title('Boxplot of Student Scores')
+            plt.xlabel('Score')
+            plt.grid(True)
+            plt.savefig("boxplot.png")
+            plt.show()
+          #-----------
+          gen_boxplot(scores)
+
+        </program>
+        <figure xml:id="fig-descriptive-statistics-boxplots">
+          <caption>Illustration of a Boxplot. The box shows the middle 50% of the data and the outliers are shown as point, here the point at 150 is the only outlier. The net range, other than outlier is shown between the two lines.</caption>
+          <image source="./images/essential-probability-and-statistics/boxplot.png">
+            <shortdescription>Display of a boxplot with one outlier.</shortdescription>
+          </image>
+        </figure>
+      </p>
+    </li>
+  </ol>
+</p>
 </section>
+
+
+
