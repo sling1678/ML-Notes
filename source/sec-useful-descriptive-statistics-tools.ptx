@@ -56,7 +56,7 @@
             <alert>A Simple Example</alert>: Let's walk through a simple example of a data that is presented to us in a table form with each column referring to one property or feature or variables in the data. Each row is one datapoint, with values of different variables across the columns. You can feed that data as a Python dictionay or a csv file or an excel file. Here, we keep it simple and feed the data as a dictionary.
         </p>
         <program language="Python">
-            <input>
+            <code>
                 import pandas as pd
                 data = {
                     'Name': ['Alice', 'Bob', 'Carol', 'Dave'],
@@ -65,7 +65,7 @@
                 }
                 df = pd.DataFrame(data)
                 print(df)
-            </input>
+            </code>
         </program>
         
         <p>
@@ -169,18 +169,56 @@
             Perhaps the strongest case for using Pandas is its ability to manipulate and transform data very rapidly with simple commands which can be piped into each other. Let's see some examples of this power of Pandas.
         </p>
         <p>
-            You can select one column of interest or multiple columns into a new DataFrame:
+            You can select one column of interest. Or select multiple columns by passing a list of the names of those columns as a list.  
             <p></p>
             <p>
                 score = df['Score']
             </p>
             <p>
-                age_score = df['Age', 'Score']
+                age_score = df[['Age', 'Score']]
             </p>
         </p>
-
+        <p>
+            You can filter data based on boolean conditions on the variables.
+            <p></p>
+            <p>
+                df1 = df[df['Age'] &gt; 25]
+            </p>
+            <p>
+                df2 = df[(df['Age'] &gt; 25) &amp; (df['Score'] &gt; 85)]
+            </p>
+            You can create columns for new variables, e.g. Passed, which has 0 or 1 entry based on the values in the Score column.
+            <p>
+                df['Passed'] = df['Score'] >= 80
+            </p>
+            Of course sort data based on a particular row.
+            <p>
+                df.sort_values(by='Score', ascending=False)
+            </p>>
+        </p>
+        <p>
+            Here I am trying to give you a sense of the power and flexibility of the Pandas library. A great book to learn this subject is through two free books.
+            <p>
+                Python for Data Analysis by Wes McKinney (the creator of Pandas) at <url href="https://wesmckinney.com/book/">the website</url> and Learning Pandas by Michael Heydt at <url href="https://github.com/trenton3983/Learning_Pandas">the website</url> . Additionally, Kaggle offers a free, comprehensive introductory course on Pandas at <url href="https://www.kaggle.com/learn/pandas">this website</url>.  
+            </p>
+        </p>
+        <p>
+            Here is a list of useful functions in Pandas. <alert>Grouping and Aggregation:</alert>  grouped = df.groupby('Passed')['Score'].mean(), which groups the data by variable 'Passed' and computes the average score. <alert>Handling Missing Data:</alert> (1) is_null_mask = df.isnull() ceates a boolean mask of missing values in the data, (2) df.dropna(), which remove rows with missing values, (3) df.fillna(0), which replace missing values with 0 or a value of your choice. <alert>Reading/Writing Files</alert>: (1) df = pd.read_csv('data.csv')    for reading from a CSV file, (2) df.to_excel('output.xlsx') for writing the DataFrame to an Excel file, (3) df.to_json('output.json') for writing the DataFrame as a JSON file. 
+        </p> 
+        <conclusion>
+            <p>
+                <alert>Conclusion: </alert>
+                Pandas simplifies the data journey: from raw files → clean tables → insightful summaries → model-ready datasets. You don't need to memorize everything. Learn the core workflow: Load data, Inspect and clean, Transform and explore, Export results or feed into models. Once you're comfortable with these steps, you’ll find Pandas becomes second nature.
+            </p>
+        </conclusion>
    
   </subsection>
+  <conclusion>
+    <p>
+     There are of course many other tools for data cleaning and transformation. For instance, TensorFlow has a very powerful data paipeline that address the transformations of data ad emphasizes consistency across the entire machine learning training and presentation cycle. But, that is a bit too much to master in the beginning. It is best to first start with Pandas or similar easy to use tool. The references given above have many notebook examples for you to work through and develop your own skills. For many years, R programming language, and maybe enven now, R is a go to language for data analysts. But, since we are emphasizing the tools more common in machine learning community, we will not have much to say about R.       
+    </p>
+  </conclusion>
+ 
 
 
 </section>
