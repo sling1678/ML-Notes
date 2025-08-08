@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-Basic-Probability">
+    <title>Basic Probability</title>
+    <p>
+        Probability is essential in machine learning to model randomness in data and outcomes. Probability tells us how likely an event is to happen. The value of a probability is always between 0 and 1.
+    </p>
+    <p>
+        There are basically three ways of looking at probability:
+        <ol>
+            <li>
+                <p>
+                    <alert>Theoretical or Classical Probability</alert>. It is based on making use of symmetry and calculating the possible outcomes in an experiment. For instance, if you have a six-sided die, which is not loaded to prefer one outcome or another, the chance of any one face showing up will be <m>1/6</m>. So, we can say that probability of any face as an outcome of a single roll is <m>p = 1/6</m>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    <alert>Frequentist Probability</alert>. It is an empirical definition of probability by observation of repeated trials of the same experiment. Thus, in the case of a six-sided die, you will roll the die and observe how many times face with <alert>1 dot</alert> showed up in how many rolls, each roll of the die being one trial of the experiment. Thus, if <m>n_1</m> of <m>N</m> trials had <alert>1 dot</alert> face up. Then, we conclude that the ratio <m>n_1/N</m> is an approximation of the true probability <m>p_1</m> of face 1 in any roll. We say that, in the limit of infinitely many trials, we would get the "true" probability.
+                    <men xml:id="eqn-frequentist-probability-definition">
+                        p_1 = \lim_{N\rightarrow \infty}\, \frac{n_1}{N}.
+                    </men>
+                    We do not assume that probabilities of every face of the die is same, as we did in using the symmetry argument in the theoretical probability; we rely of the repeated trials to show us any differences among the faces.
+                    
+                </p>
+            </li>
+            <li>
+                <p>
+                   <alert>Bayesian PRobability</alert>. This is also an empirical definition of probability. It is based on incorporating belief about the probability of an outcome BEFORE we even conduct the experiment and then updated this so-called prior assumption or bias with what we observe in the experiment. The updated belief is the posterior, and improved value of the probability. Clearly, as we repeat the experiment infinitely many times, the effect of our initial belief would disappear and the answer will match the results of the frequentist's experiments. However, since we can never do infinite number of trials, the Bayesian gives an edge in cases where we have some information about the outcome even before we start the trials.
+                </p>
+                <p>
+                    Thus in the case of a six-sided die
+                </p>
+            </li>
+
+        </ol>
+
+    </p>
+    
+</section>
