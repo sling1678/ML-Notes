@@ -68,7 +68,7 @@
                     </me>
                     Toss again, say no one.
                     <me>
-                        P_1 \sim B(2,2) \arrow \text{[Toss, No one]} \rightarrow \sim B(2,3) \Rightarrow \bar{p}_1 = \frac{2}{2+3} = \frac{2}{5}.
+                        P_1 \sim B(2,2) \rightarrow \text{[Toss, No one]} \rightarrow \sim B(2,3) \Rightarrow \bar{p}_1 = \frac{2}{2+3} = \frac{2}{5}.
                     </me>                   
                     We keep updating the probability distribution of <m>p_1</m>. At any point, we can take the expectation value of the the variable <m>p_1</m> in the current distribution to give us the "best current value" for <m>p_1</m>. Thus, after three trials above, we will say that <m>p_1 = 0.4</m>.
                 </p>  
@@ -86,7 +86,7 @@
                 <p>  
                     For the same tossing results, frequentist's probability will give us the following estimate:
                     <me>
-                        p_1(\text{frequenctist}) = \frac{n_1}{N} = \frac{3}{10} = 0.3.
+                        p_1(\text{frequentist}) = \frac{n_1}{N} = \frac{3}{10} = 0.3.
                     </me>
                     
                 </p>
