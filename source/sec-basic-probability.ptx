@@ -24,11 +24,77 @@
             </li>
             <li>
                 <p>
-                   <alert>Bayesian PRobability</alert>. This is also an empirical definition of probability. It is based on incorporating belief about the probability of an outcome BEFORE we even conduct the experiment and then updated this so-called prior assumption or bias with what we observe in the experiment. The updated belief is the posterior, and improved value of the probability. Clearly, as we repeat the experiment infinitely many times, the effect of our initial belief would disappear and the answer will match the results of the frequentist's experiments. However, since we can never do infinite number of trials, the Bayesian gives an edge in cases where we have some information about the outcome even before we start the trials.
+                   <alert>Bayesian Probability</alert>. This is also an empirical definition of probability. It is based on incorporating belief about the probability of an outcome BEFORE we even conduct the experiment and then updated this so-called prior assumption or bias with what we observe in the experiment. The updated belief is the posterior, and improved value of the probability. Clearly, as we repeat the experiment infinitely many times, the effect of our initial belief would disappear and the answer will match the results of the frequentist's experiments. However, since we can never do infinite number of trials, the Bayesian gives an edge in cases where we have some information about the outcome even before we start the trials.
                 </p>
                 <p>
-                    Thus in the case of a six-sided die
+                    Thus, in the case of a six-sided die, suppose we want to estimate the probability <m>p_1</m> for one-dot face up as we illustrated in the frequentist case above. First, we would need to choose a prior belief, i.e., a probability distribution for <m>p_1</m>, i.e., how likely is any value of <m>p_1</m> between its range of values, which will be from <m>0</m> to <m>1</m>, inclusive, <m>0\le p_1 \le 1</m>. Since, we do not know which value is right, we might decide that it could be 1/2 times it will be face up and 1/2 of the time it will be not face up (I know a fair die will be 1/6 times face up, but I want to show you how even a very off prior will eventually converge to the proper value). In such cases and our trial each time being either face up true or false ( which is a case of Bernoulli trials ), it is traditional to choose a beta distribution, which has two parameters <m>\alpha</m> and <m>\beta</m>, with <m>\alpha=1</m>  and <m>\beta = 1</m>. We will write this as
+                    <men xml:id="eqn-beta-distribution-prior">
+                        Pr(p_1=x) dx = \frac{1}{B(\alpha, \beta)}\, x^{\alpha - 1} (1-x)^{\beta - 1}\, dx =  \frac{1}{B(1, 1)}\, dx,
+                    </men>
+                    where <m>B(\alpha, \beta)</m> is beta function. The mean value of the <m>p_1</m> in a beta distribution can be shown to be
+                    <men xml:id="eqn-mean-beta-distribution">
+                        \bar{p}_1 = \frac{\alpha}{\alpha + \beta} = \text{(here)}\ \frac{1}{1+1} = \frac{1}{2} = 0.5.
+                    </men>
+                    So, we are basically, starting way off in our belief.
                 </p>
+                <p>
+                    
+                    Beta function is usually written in terms of factorial or Gamma function.
+                    <me>
+                        B(\alpha, \beta) = \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)},
+                    </me>
+                    where, for integer arguments <m>n</m>,
+                    <me>
+                        \Gamma(n) = (n-1)!,
+                    </me>
+                    and in general,
+                    <me>
+                        \Gamma(\alpha) = \integrate_0^\infty\, e^{-t}\,t^{\alpha -1}\, dt.
+                    </me>
+                    Note that <m>\Gamma(1) = 0! = 1</m>. To hide all the mathematical details in our work below, we will, as is normally done, just express the probability <m>Pr(p_1)</m> by a simpler notation and represent Eq. <xref ref="eqn-beta-distribution-prior" />
+                    <men xml:id="eqn-probability-distribution-simple-notation">
+                        P_1 \sim B(\alpha, \beta) = B(1,1),
+                    </men>
+                    where instead of lower case variable name <m>p_1</m>, we use the notation of upper case <m>P_1</m>.
+                </p> 
+                <p>    
+                    Now, suppose we roll the die and observe that the up face is not one, then without showing you the calculations here, which will be done later in the chapter, we use Bayes rule, to be discussed later, to show that the probability distribution now shifts to <m>B(1,2)</m>.
+                    <me>
+                        P_1 \sim B(1,1) \rightarrow \text{[Toss, No one]} \rightarrow \sim B(1,2) \Rightarrow \bar{p}_1 = \frac{1}{1+2} = \frac{1}{3}.
+                    </me>
+                    Toss second time, let's say the result is a one. Then our belief will be update with this new data to <m>B(2,2)</m>.
+                    <me>
+                        P_1 \sim B(1,2) \rightarrow \text{[Toss, Yes one]} \rightarrow \sim B(2,2) \Rightarrow \bar{p}_1 = \frac{2}{4} = 0.5.
+                    </me>
+                    Toss again, say no one.
+                    <me>
+                        P_1 \sim B(2,2) \arrow \text{[Toss, No one]} \rightarrow \sim B(2,3) \Rightarrow \bar{p}_1 = \frac{2}{2+3} = \frac{2}{5}.
+                    </me>                   
+                    We keep updating the probability distribution of <m>p_1</m>. At any point, we can take the expectation value of the the variable <m>p_1</m> in the current distribution to give us the "best current value" for <m>p_1</m>. Thus, after three trials above, we will say that <m>p_1 = 0.4</m>.
+                </p>  
+                <p>  
+                    Suppose you continued tossing and you had the following next 7 trials:
+                    <me>
+                        \text{1, not 1, not 1, not 1, not 1, 1, not 1}.
+                    </me>
+                    After these 10 trials in total, the distribution will be
+                    <me>
+                        P_1 \sim B(4, 8) \Rightarrow \bar{p}_1 = \frac{4}{12} = \frac{1}{3}.
+                    </me>
+                    This is still far away from <m>1/6</m> that you would expect from a fair die, but you don't know if the die was fair. So, empirical results are all you have to go by.
+                </p>  
+                <p>  
+                    For the same tossing results, frequentist's probability will give us the following estimate:
+                    <me>
+                        p_1(\text{frequenctist}) = \frac{n_1}{N} = \frac{3}{10} = 0.3.
+                    </me>
+                    
+                </p>
+                They look similar. But, had you expected the die was fair, you would start with a better prior, with say <m>B(1,5)</m>. Then the 10 trials would update to
+                <me>
+                    P_1 \sim B(4, 12) \Rightarrow \bar{p}_1 = \frac{4}{4+12} = \frac{1}{4} = 0.25.
+                </me>
+                It would have revealed if the die was not a fair die.
             </li>
 
         </ol>
