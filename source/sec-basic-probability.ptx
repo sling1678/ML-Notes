@@ -4,118 +4,143 @@
     <p>
         Probability is essential in machine learning to model randomness in data and outcomes. Probability tells us how likely an event is to happen. The value of a probability is always between 0 and 1.
     </p>
-    <p>
-        There are basically three ways of looking at probability:
-        <ol>
-            <li>
-                <p>
-                    <alert>Theoretical or Classical Probability</alert>. It is based on making use of symmetry and calculating the possible outcomes in an experiment. For instance, if you have a six-sided die, which is not loaded to prefer one outcome or another, the chance of any one face showing up will be <m>1/6</m>. So, we can say that probability of any face as an outcome of a single roll is <m>p = 1/6</m>.
-                </p>
-            </li>
-            <li>
-                <p>
-                    <alert>Frequentist Probability</alert>. It is an empirical definition of probability by observation of repeated trials of the same experiment. Thus, in the case of a six-sided die, you will roll the die and observe how many times face with <alert>1 dot</alert> showed up in how many rolls, each roll of the die being one trial of the experiment. Thus, if <m>n_1</m> of <m>N</m> trials had <alert>1 dot</alert> face up. Then, we conclude that the ratio <m>n_1/N</m> is an approximation of the true probability <m>p_1</m> of face 1 in any roll. We say that, in the limit of infinitely many trials, we would get the "true" probability.
-                    <men xml:id="eqn-frequentist-probability-definition">
-                        p_1 = \lim_{N\rightarrow \infty}\, \frac{n_1}{N}.
-                    </men>
-                    We do not assume that probabilities of every face of the die is same, as we did in using the symmetry argument in the theoretical probability; we rely of the repeated trials to show us any differences among the faces.
-                    
-                </p>
-            </li>
-            <li>
-                <p>
-                   <alert>Bayesian Probability</alert>. This is also an empirical definition of probability. It is based on incorporating belief about the probability of an outcome BEFORE we even conduct the experiment and then updated this so-called prior assumption or bias with what we observe in the experiment. The updated belief is the posterior, and improved value of the probability. 
-                </p>  
-                <p> 
-                   Clearly, as we repeat the experiment infinitely many times, the effect of our initial belief would disappear and the answer will match the results of the frequentist's experiments. However, since we can never do infinite number of trials, the Bayesian gives an edge in cases where we have some information about the outcome even before we start the trials.
-                </p>
-                <p>
-                    <alert>Example:</alert> This example is a little bit ahead of my presentation here as it requres a little bit of math to properly express how th Bayesian probability works. If you feel up to it, you can ahead and read on, but it's okay to skip it for now.
-                </p> 
-                <p>  
-                    In the case of a six-sided die, suppose we want to estimate the probability <m>p_1</m> for one-dot face up as we illustrated in the frequentist case above. First, we would need to choose a prior belief, i.e., a probability distribution for <m>p_1</m>, i.e., how likely is any value of <m>p_1</m> between its range of values, which will be from <m>0</m> to <m>1</m>, inclusive, <m>0\le p_1 \le 1</m>. Since, we do not know which value is right, we might decide that it could be 1/2 times it will be face up and 1/2 of the time it will be not face up (I know a fair die will be 1/6 times face up, but I want to show you how even a very off prior will eventually converge to the proper value). In such cases and our trial each time being either face up true or false ( which is a case of Bernoulli trials ), it is traditional to choose a beta distribution, which has two parameters <m>\alpha</m> and <m>\beta</m>, with <m>\alpha=1</m>  and <m>\beta = 1</m>. Using symbol <m>x</m> for <m>p_1</m> and <m>P(x)</m>, probability density of <m>p_1</m>, we will write this as follows where <m>0 \le x \le 1</m>.
-                    <men xml:id="eqn-beta-distribution-prior">
-                        \text{P(x)} dx = \frac{1}{B(\alpha, \beta)}\, x^{\alpha - 1} (1-x)^{\beta - 1},
-                    </men>
-                    where <m>B(\alpha, \beta)</m> is beta function. The mean value of beta distribution is an important result and can be easily found.
-                    <men xml:id="eqn-mean-of-beta-distribution">
-                        \langle x \rangle = \int_0^1\, x P(x) dx = \frac{\alpha}{\alpha + \beta}.
-                    </men>
-                    Here, I have introduced physicists' notation for the mean of a quantity, <m>\langle \cdots \rangle</m>. 
-                    Thus, by choosing <m>B(1,1)</m> as the prior distribution, we are assuming that somehow we suspect that <m>p_1</m> is close to <m>1/2</m> since mean of this distribution will be The mean value of the <m>p_1</m> in a beta distribution can be shown to be
-                    <men xml:id="eqn-mean-beta-distribution">
-                        \langle p_1 \rangle = \frac{\alpha}{\alpha + \beta} = \frac{1}{1+1} = \frac{1}{2} = 0.5.
-                    </men>
-                    So, we are basically, starting way off in our belief.
-                </p>
-                <p>
-                    
-                    Just a side math info: Beta function is usually written in terms of factorial or Gamma function.
-                    <me>
-                        B(\alpha, \beta) = \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)},
-                    </me>
-                    where, for integer arguments <m>n</m>,
-                    <me>
-                        \Gamma(n) = (n-1)! = [ m! = (m)(m-1) \cdots 1 = m \times (m-1)!\ \text{with}\ 0! = 1.]
-                    </me>
-                    and in general,
-                    <me>
-                        \Gamma(\alpha) = \int_0^\infty\, e^{-t}\,t^{\alpha -1}\, dt.
-                    </me>
-                    To hide all the mathematical details in our work below, we will, as is normally done, just express the probability <m>P(p_1)</m> by a simpler notation and represent Eq. <xref ref="eqn-beta-distribution-prior" />
-                    <men xml:id="eqn-probability-distribution-simple-notation">
-                        P_1 \sim B(\alpha, \beta) = B(1,1),
-                    </men>
-                    where instead of lower case variable name <m>p_1</m>, we use the notation of upper case <m>P_1</m>.
-                </p> 
-                <p> 
-                    Let's get back to our rolling experiment and see how our belief of the true value of <m>p_1</m> evolves with each roll's result.     
-                    Suppose we roll the die and observe that the up face is not one, then without showing you the calculations here, which will be done later in the chapter, we use Bayes rule, to be discussed later, to show that the probability distribution now shifts to <m>B(1,2)</m>.
-                    <me>
-                        P_1 \sim B(1,1) \rightarrow \text{[Toss, No one]} \rightarrow \sim B(1,2) \Rightarrow \langle p_1 \rangle = \frac{1}{1+2} = \frac{1}{3}.
-                    </me>
-                    How did we go from distribution <m>B(1,1)</m> to <m>B(1,2)</m>? I used Bayesian theorem. We will not show the calculation here but differ to a later section.
-                </p>  
-                <p>  
-                    Toss second time, let's say the result is a one. Then our belief will be update with this new data to <m>B(2,2)</m>.
-                    <me>
-                        P_1 \sim B(1,2) \rightarrow \text{[Toss, Yes one]} \rightarrow \sim B(2,2) \Rightarrow \langle p_1 \rangle = \frac{2}{4} = 0.5.
-                    </me>
-                    Toss again, say no one.
-                    <me>
-                        P_1 \sim B(2,2) \rightarrow \text{[Toss, No one]} \rightarrow \sim B(2,3) \Rightarrow \langle p_1 \rangle = \frac{2}{2+3} = \frac{2}{5}.
-                    </me>                   
-                    We keep updating the probability distribution of <m>p_1</m>. At any point, we can take the expectation value of the the variable <m>p_1</m> in the current distribution to give us the "best current value" for <m>p_1</m>. Thus, after three trials above, we will say that <m>p_1 = 0.4</m>.
-                </p>  
-                <p>  
-                    Suppose you continued rolling and you had the following next 7 trials:
-                    <me>
-                        \text{1, not 1, not 1, not 1, not 1, 1, not 1}.
-                    </me>
-                    After these 10 trials in total, the distribution will be
-                    <me>
-                        P_1 \sim B(4, 8) \Rightarrow \langle p_1 \rangle = \frac{4}{12} = \frac{1}{3}.
-                    </me>
-                    This is still far away from <m>1/6</m> that you would expect from a fair die, but you don't know if the die was fair. So, empirical results are all you have to go by.
-                </p>  
-                <p>  
-                    For the same rolling results, frequentists' probability will give us the following estimate:
-                    <me>
-                        p_1(\text{frequentist}) = \frac{n_1}{N} = \frac{3}{10} = 0.3.
-                    </me>
-                    
-                </p>
-                <p> 
-                    They look similar. But, had you expected the die was fair, you would start with a better prior, with say <m>B(1,5)</m>. Then the 10 trials would update to
-                    <me>
-                        P_1 \sim B(4, 12) \Rightarrow \langle p_1\rangle = \frac{4}{4+12} = \frac{1}{4} = 0.25.
-                    </me>
-                    It would have revealed if the die was not a fair die. It's either not a fair die or we have rolled it too few times.
-                </p>  
-            </li>
+    <subsection xml:id="subsec-three-types-of-probabilities">
+        <title>Three Types of Probabilities</title>
+        
 
-        </ol>
+        <p>
+            There are basically three ways of looking at probability:
+            <ol>
+                <li>
+                    <p>
+                        <alert>Theoretical or Classical Probability</alert>. It is based on making use of symmetry and calculating the possible outcomes in an experiment. For instance, if you have a six-sided die, which is not loaded to prefer one outcome or another, the chance of any one face showing up will be <m>1/6</m>. So, we can say that probability of any face as an outcome of a single roll is <m>p = 1/6</m>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <alert>Frequentist Probability</alert>. It is an empirical definition of probability by observation of repeated trials of the same experiment. Thus, in the case of a six-sided die, you will roll the die and observe how many times face with <alert>1 dot</alert> showed up in how many rolls, each roll of the die being one trial of the experiment. Thus, if <m>n_1</m> of <m>N</m> trials had <alert>1 dot</alert> face up. Then, we conclude that the ratio <m>n_1/N</m> is an approximation of the true probability <m>p_1</m> of face 1 in any roll. We say that, in the limit of infinitely many trials, we would get the "true" probability.
+                        <men xml:id="eqn-frequentist-probability-definition">
+                            p_1 = \lim_{N\rightarrow \infty}\, \frac{n_1}{N}.
+                        </men>
+                        We do not assume that probabilities of every face of the die is same, as we did in using the symmetry argument in the theoretical probability; we rely of the repeated trials to show us any differences among the faces.
+                        
+                    </p>
+                </li>
+                <li>
+                    <p>
+                    <alert>Bayesian Probability</alert>. This is also an empirical definition of probability. It is based on incorporating belief about the probability of an outcome BEFORE we even conduct the experiment and then updated this so-called prior assumption or bias with what we observe in the experiment. The updated belief is the posterior, and improved value of the probability. 
+                    </p>  
+                    <p> 
+                    Clearly, as we repeat the experiment infinitely many times, the effect of our initial belief would disappear and the answer will match the results of the frequentist's experiments. However, since we can never do infinite number of trials, the Bayesian gives an edge in cases where we have some information about the outcome even before we start the trials.
+                    </p>
+                    <p>
+                        <alert>Example:</alert> This example is a little bit ahead of my presentation here as it requres a little bit of math to properly express how th Bayesian probability works. If you feel up to it, you can ahead and read on, but it's okay to skip it for now.
+                    </p> 
+                    <p>  
+                        In the case of a six-sided die, suppose we want to estimate the probability <m>p_1</m> for one-dot face up as we illustrated in the frequentist case above. First, we would need to choose a prior belief, i.e., a probability distribution for <m>p_1</m>, i.e., how likely is any value of <m>p_1</m> between its range of values, which will be from <m>0</m> to <m>1</m>, inclusive, <m>0\le p_1 \le 1</m>. Since, we do not know which value is right, we might decide that it could be 1/2 times it will be face up and 1/2 of the time it will be not face up (I know a fair die will be 1/6 times face up, but I want to show you how even a very off prior will eventually converge to the proper value). In such cases and our trial each time being either face up true or false ( which is a case of Bernoulli trials ), it is traditional to choose a beta distribution, which has two parameters <m>\alpha</m> and <m>\beta</m>, with <m>\alpha=1</m>  and <m>\beta = 1</m>. Using symbol <m>x</m> for <m>p_1</m> and <m>P(x)</m>, probability density of <m>p_1</m>, we will write this as follows where <m>0 \le x \le 1</m>.
+                        <men xml:id="eqn-beta-distribution-prior">
+                            \text{P(x)} dx = \frac{1}{B(\alpha, \beta)}\, x^{\alpha - 1} (1-x)^{\beta - 1},
+                        </men>
+                        where <m>B(\alpha, \beta)</m> is beta function. The mean value of beta distribution is an important result and can be easily found.
+                        <men xml:id="eqn-mean-of-beta-distribution">
+                            \langle x \rangle = \int_0^1\, x P(x) dx = \frac{\alpha}{\alpha + \beta}.
+                        </men>
+                        Here, I have introduced physicists' notation for the mean of a quantity, <m>\langle \cdots \rangle</m>. 
+                        Thus, by choosing <m>B(1,1)</m> as the prior distribution, we are assuming that somehow we suspect that <m>p_1</m> is close to <m>1/2</m> since mean of this distribution will be The mean value of the <m>p_1</m> in a beta distribution can be shown to be
+                        <men xml:id="eqn-mean-beta-distribution">
+                            \langle p_1 \rangle = \frac{\alpha}{\alpha + \beta} = \frac{1}{1+1} = \frac{1}{2} = 0.5.
+                        </men>
+                        So, we are basically, starting way off in our belief.
+                    </p>
+                    <p>
+                        
+                        Just a side math info: Beta function is usually written in terms of factorial or Gamma function.
+                        <me>
+                            B(\alpha, \beta) = \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)},
+                        </me>
+                        where, for integer arguments <m>n</m>,
+                        <me>
+                            \Gamma(n) = (n-1)! = [ m! = (m)(m-1) \cdots 1 = m \times (m-1)!\ \text{with}\ 0! = 1.]
+                        </me>
+                        and in general,
+                        <me>
+                            \Gamma(\alpha) = \int_0^\infty\, e^{-t}\,t^{\alpha -1}\, dt.
+                        </me>
+                        To hide all the mathematical details in our work below, we will, as is normally done, just express the probability <m>P(p_1)</m> by a simpler notation and represent Eq. <xref ref="eqn-beta-distribution-prior" />
+                        <men xml:id="eqn-probability-distribution-simple-notation">
+                            P_1 \sim B(\alpha, \beta) = B(1,1),
+                        </men>
+                        where instead of lower case variable name <m>p_1</m>, we use the notation of upper case <m>P_1</m>.
+                    </p> 
+                    <p> 
+                        Let's get back to our rolling experiment and see how our belief of the true value of <m>p_1</m> evolves with each roll's result.     
+                        Suppose we roll the die and observe that the up face is not one, then without showing you the calculations here, which will be done later in the chapter, we use Bayes rule, to be discussed later, to show that the probability distribution now shifts to <m>B(1,2)</m>.
+                        <me>
+                            P_1 \sim B(1,1) \rightarrow \text{[Toss, No one]} \rightarrow \sim B(1,2) \Rightarrow \langle p_1 \rangle = \frac{1}{1+2} = \frac{1}{3}.
+                        </me>
+                        How did we go from distribution <m>B(1,1)</m> to <m>B(1,2)</m>? I used Bayesian theorem. We will not show the calculation here but differ to a later section.
+                    </p>  
+                    <p>  
+                        Toss second time, let's say the result is a one. Then our belief will be update with this new data to <m>B(2,2)</m>.
+                        <me>
+                            P_1 \sim B(1,2) \rightarrow \text{[Toss, Yes one]} \rightarrow \sim B(2,2) \Rightarrow \langle p_1 \rangle = \frac{2}{4} = 0.5.
+                        </me>
+                        Toss again, say no one.
+                        <me>
+                            P_1 \sim B(2,2) \rightarrow \text{[Toss, No one]} \rightarrow \sim B(2,3) \Rightarrow \langle p_1 \rangle = \frac{2}{2+3} = \frac{2}{5}.
+                        </me>                   
+                        We keep updating the probability distribution of <m>p_1</m>. At any point, we can take the expectation value of the the variable <m>p_1</m> in the current distribution to give us the "best current value" for <m>p_1</m>. Thus, after three trials above, we will say that <m>p_1 = 0.4</m>.
+                    </p>  
+                    <p>  
+                        Suppose you continued rolling and you had the following next 7 trials:
+                        <me>
+                            \text{1, not 1, not 1, not 1, not 1, 1, not 1}.
+                        </me>
+                        After these 10 trials in total, the distribution will be
+                        <me>
+                            P_1 \sim B(4, 8) \Rightarrow \langle p_1 \rangle = \frac{4}{12} = \frac{1}{3}.
+                        </me>
+                        This is still far away from <m>1/6</m> that you would expect from a fair die, but you don't know if the die was fair. So, empirical results are all you have to go by.
+                    </p>  
+                    <p>  
+                        For the same rolling results, frequentists' probability will give us the following estimate:
+                        <me>
+                            p_1(\text{frequentist}) = \frac{n_1}{N} = \frac{3}{10} = 0.3.
+                        </me>
+                        
+                    </p>
+                    <p> 
+                        They look similar. But, had you expected the die was fair, you would start with a better prior, with say <m>B(1,5)</m>. Then the 10 trials would update to
+                        <me>
+                            P_1 \sim B(4, 12) \Rightarrow \langle p_1\rangle = \frac{4}{4+12} = \frac{1}{4} = 0.25.
+                        </me>
+                        It would have revealed if the die was not a fair die. It's either not a fair die or we have rolled it too few times.
+                    </p>  
+                </li>
 
-    </p>
-    
+            </ol>
+
+        </p>
+    </subsection>
+    <subsection xml:id="subsec-Axiomatic-View-of-Probability">
+        <title>Axiomatic View of Probability</title>
+        <p>
+            Andrey Kolmogorov laid the foundations of the subject of probability in 1933 with three fundamental axioms. First we need definition of some terms in probability space. 
+        </p> 
+        <p>
+            <alert>Sample Space <m>\Omega</m>: </alert>
+            The<alert>sample space</alert> <m>\Omega</m> is the set of all unique outcomes in the  experiment of interest. For instance, in the case of a single roll of a six-sided die, you can get only <m>1, 2, 3, 4, 5, \text{or}, 6</m>. Therefore, set <m>\Omega = \{1, 2, 3, 4, 5, 6 \}</m>. 
+        </p>  
+        <p> 
+            <alert>Event Space <m>F</m>:</alert>
+            Event Space <m>F</m> be the set of all subsets of <m>\Omega</m>, including the empty set, <m>\varnothing = \{\}</m>. If <m>\Omega</m> has <m>N</m> elements, then, <m>F</m> will have <m>2^N</m> elements. In the case of the six-sided die, the number of elements in <m>F</m> will be <m>2^6 = 64</m>. That's too large to list in example here. 
+        </p>  
+        <p>  
+            Let's look at another experiment: tossing a coin with two possible outcomes in any single toss. So, <m>\Omega = \{ H, T\}</m>, where <m>H</m> is head and <m>T</m> is tail. The subsets will be <m>F = \{  \{\}\equiv\varnothing, \{H\}, \{T\}, \{H,T\}\equiv\Omega \}</m>. Notice that <m>\varnothing</m> and <m>\Omega</m> will always be in <m>F</m>. The empty set is included for completeness in mathematical calculations and <m>\Omega</m> here means either <m>H</m> or <m>T</m> event, <m>\{H\}</m> means an event in which it's a head and <m>\{T\}</m> is an event of tail. Note: you can't have an event in which a single toss will be head AND tail. That is why you don't have that since <m>H</m> and <m>T</m> are unique exclusive outcomes.
+        </p>
+        <p>
+            <alert>Probability <m>P</m>:</alert> 
+        </p>
+        
+    </subsection>
 </section>
