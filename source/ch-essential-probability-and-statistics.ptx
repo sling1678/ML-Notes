@@ -11,6 +11,7 @@
   <xi:include href="sec-descriptive-statistics.ptx" />
   <xi:include href="sec-useful-descriptive-statistics-tools.ptx" />
   <xi:include href="sec-categorical-and-numerical-data.ptx" />
+  <!-- <xi:include href="sec-preliminary-probability.ptx" /> -->
   <xi:include href="sec-basic-probability.ptx" />
 
 </chapter>
