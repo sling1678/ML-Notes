@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section xml:id="sec-Joint-Conditional-and-Marginal-Probabilities">
+    <title>Joint, Conditional and Marginal Probabilities</title>
+    <p>
+        In this section, we address probabilities in situation when you have more than one variable. Whether they are independent or not independent makes a difference. Let's first define a variable in the context of probability and statistics.
+    </p>
+    <subsection xml:id="subsec-Random-Variables">
+        <title>Random Variables and Probabilities</title>
+        <p>
+            We will think of variables as outcomes of experiments. A variable whose value is uncertain or unpredictable from trial to trial is called a random variable. We tend to use capital letter for the name of the variable and small letters for its values. Thus, for a variable <m>X</m>, the values will be denoted by <m>x_1, x_2, \cdots,</m> etc. Sometimes we will use superscripts to denote values, <m>x^{(1)},x^{(2)}, \cdots </m>.
+        </p>
+        <p>
+            In our practice, the values of random variables will be all real numbers. Now, if the variable <m>X</m> can take any real number, then we will call such a variable a <alert>continuous variable</alert>. On the other hand, if the variable takes only discrete values, such as items in a finite set, then it will be called <alert>categorical or discrete variable</alert>.
+        </p>
+        <p>
+            The probability measure <m>P</m> of a probability space <m>(\Omega, F, P)</m> of a categorical variable has to specify probabilities of each of the elements of finite set <m>\Omega</m>. Let there be <m>N</m> distinct values of of a categorical variable <m>X</m>, say, <m>x_1, x_2, \cdots, x_N</m>. Then, all we need to specify <m>P</m> are the numbers <m>p_i</m> for each unique/exclusive outcome.
+            <men xml:id="eqn-probaility-mass-function">
+                P(X=x_i) = p_i
+            </men>
+            Note that due to normalization, the probability of event <m>\Omega</m>, will be 1.
+            <men xml:id="eqn-normalization-of-probability">
+                P(\Omega) = \sum_{i=1}^N P(X=x_i) = \sum_{i=1}^N p_1 = 1.
+            </men>
+            
+            This probability measure is called <alert>probability mass function</alert> or <m>PMF</m>. Given a PMF, it is easy to find the mean value of the random variable <m>X</m>, which will be denoted by angle brackets as per physics notation.
+            <men xml:id="eqn-mean-of-random-variable">
+                \text{Mean}(X) = \langle X \rangle = \sum_{i=1}^N  x_i\, P(X=x_i) = \sum_{i=1}^N\, x_i\, p_i.
+            </men>
+            The process of taking mean shows that it just sum of values of <m>X</m> weighted according to their probabilities. This weighting according to probabilities is called taking <alert>expectation</alert>. Thus, expectation value of any function <m>f(X)</m> is obtained accordingly.
+            <men xml:id="eqn-expectation-values">
+                \text{Expectation value of } f(X) \equiv \langle f(X) \rangle = \sum_{i=1}^N\, p_i\, f(x_i).
+            </men>
+            
+            The variance will be expectation value of another variable obtained by subtracting the mean <m>\langle X \rangle</m> from the random variable <m>X</m> and squaring that. This gives us a measure of the spread of values about the mean.
+            <men xml:id="eqn-variance-of-random-variable">
+                \text{Var}(X) = \langle  \left( X - \langle X \rangle\right)^2 \rangle,
+            </men>
+            where <m>X</m> is the variable but <m>\langle X \rangle</m> is just a number. The following calculation will relate variance to <m>x_i</m> and <m>p_i</m>.
+            <md>
+                <mrow> \text{Var}(X) \amp = \sum_{i=1}^N \left( x_i - \langle X \rangle\right)^2\, P(X=x_i) </mrow>
+                <mrow> \amp = \sum_{i=1}^N \left( x_i^2 - 2 x_i \langle X \rangle  + \langle X \rangle^2 \right)\, p_i </mrow>
+                <mrow> \amp = \sum_{i=1}^N x_i^2 p_i - 2 \langle X \rangle\sum_{i=1}^N x_i p_i + \langle X \rangle^2\sum_{i=1}^N p_i  </mrow>
+                <mrow>  \amp = \left( \sum_{i=1}^N p_i\,x_i^2 \right) - \langle X \rangle^2</mrow>
+            </md>
+            The first term is just expectation value of variable <m>X^2</m>, i.e., <m>\langle X^2 \rangle</m>. Therefore, we often see variance in the following simpler-looking formula.
+            <men xml:id="eqn-variance-simpler">
+                \text{Var}(X) = \langle X^2 \rangle - \left( \langle X \rangle \right)^2.          
+            </men>
+            The standard deviation will, of course be, just square root of variance.
+            <men xml:id="eqn-standard-deviation-from-variance">
+                \text{Std. Dev.}(X) = \sqrt{ \text{Var}(X) }.
+            </men>
+        </p>
+        
+    </subsection>
+    
+</section>
