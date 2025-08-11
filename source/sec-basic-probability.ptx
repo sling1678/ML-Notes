@@ -163,10 +163,13 @@
                 </li>
                 <li>
                     <p>
-                    <alert>Bayesian Probability</alert>. This is also an empirical definition of probability. It is based on incorporating belief about the probability of an outcome BEFORE we even conduct the experiment and then updated this so-called prior assumption or bias with what we observe in the experiment. The updated belief is the posterior, and improved value of the probability. 
+                        <alert>Bayesian Probability</alert>. This is also an empirical definition of probability. But, rather than give you one number for probability of an event, Bayesian gives you a probability distribution of the values of probability of the event. From that, you can work out the mean value, which you can use as one value for the probability of the event. 
+                    </p> 
+                    <p> 
+                        It is based on incorporating belief about the probability of an outcome BEFORE we even conduct the experiment and then updated this so-called prior assumption or bias with what we observe in the experiment. The updated belief is the posterior, and improved value of the probability. 
                     </p>  
                     <p> 
-                    Clearly, as we repeat the experiment infinitely many times, the effect of our initial belief would disappear and the answer will match the results of the frequentist's experiments. However, since we can never do infinite number of trials, the Bayesian gives an edge in cases where we have some information about the outcome even before we start the trials.
+                        Clearly, as we repeat the experiment infinitely many times, the effect of our initial belief would disappear and the answer will match the results of the frequentists' experiments. However, since we can never do infinite number of trials, the Bayesian gives an edge in cases where we have some information about the outcome even before we start the trials.
                     </p>
                     <p>
                         <alert>Example:</alert> This example is a little bit ahead of my presentation here as it requres a little bit of math to properly express how th Bayesian probability works. If you feel up to it, you can ahead and read on, but it's okay to skip it for now.
