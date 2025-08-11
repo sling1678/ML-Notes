@@ -48,10 +48,163 @@
             </men>
             The standard deviation will, of course be, just square root of variance.
             <men xml:id="eqn-standard-deviation-from-variance">
-                \text{Std. Dev.}(X) = \sqrt{ \text{Var}(X) }.
+                \text{Stdev}(X) = \sqrt{ \text{Var}(X) }.
             </men>
         </p>
         
     </subsection>
+    <subsection xml:id="subsec-Joint-Probability">
+        <title>Joint ad Marginal Probabilities</title>
+        <p>
+            Suppose you have two discrete random variables, e.g, does the patient have a disease <m>(X)</m> and is the diagnosis positive <m>(Y)</m>. Both of these variables have just two values: <m>\Omega_X = \{ x_1 = \text{Yes}, x_2 = \text{No}\}</m> and <m>\Omega_Y = \{ y_1 = \text{Yes}, y_2 = \text{No}\}</m>
+        </p>
+        <p>
+            <alert>Joint probability</alert> is probability measure over the outcome space <m>\Omega</m> that has all the combinations of the elements of <m>\Omega_X
+            </m> and <m>\Omega_Y</m>. That is, we will specify probability measure for each of the elements of following <m>\Omega</m>
+            <me>
+                \Omega = \{ (x_1, y1), (x_1, y_2), (x_2, y_1), (x_2, y_2) }.
+            </me>
+            That is we need the following probabilities.
+            <md>
+                <mrow>p_{11} \amp = P(X=x_1, Y=y_1) </mrow>
+                <mrow>p_{12} \amp = P(X=x_1, Y=y_2) </mrow>
+                <mrow>p_{21} \amp = P(X=x_2, Y=y_1) </mrow>
+                <mrow>p_{22} \amp = P(X=x_2, Y=y_2) </mrow>
+            </md>
+            These probabilities are joint probabilities over the joint space of <m>X</m> and <m>Y</m>.
+        </p>
+        <p>
+            If you ignore <m>Y</m> and just look at the probabilities of patient having the disease and not having the disease, they are called <alert>Marginal Probabilities</alert> of <m>X</m>. If you had more than two variables, say <m>Y, Z, A, B, \cdots</m>, you would just ignore all the other variables to focus only on <m>X</m> to obtain its marginal probabilities.
+            <men xml:id="eqn-marginal-probability-of-X">
+                P(x=x_1) = p_1,\ \ P(X=x_2) = p_2.
+            </men>
+        </p>
+        <p>
+            It turns out that the marginal probabilities can be obtained from joint probabilities by just summing out the other variable's values in the joint probability. Thus, in our example, the p_1 and p_2 of <m>X</m> alone will be
+            <md>
+                <mrow>p_1 \amp p_{11} + p_{12} \equiv \sum_{y=1}^2 P(X=1,Y=y) </mrow>
+                <mrow>p_2 \amp p_{21} + p_{22} \equiv \sum_{y=1}^2 P(X=2,Y=y) </mrow>
+            </md>
+            Same will be the case if you are interested in the marginal probability of <m>Y</m>.
+        </p>
+    </subsection>
+    <subsection xml:id="subsec-Conditional-Probability">
+        <title>Conditional Probability</title>
+        <p>
+            Conditional probability is a little tricky and is the most used in Machine Learning. Conditional probability is denoted by <m>P(X|Y)</m>. But, this is too abstract a notation. I will denote it by <m>P(X|Y=y)</m> to be a conditional probability  of <m>X</m> given that the random variable <m>Y</m> HAS A PARTICULAR VALUE <m>y</m>.
+        </p>  
+        <p>  
+            It is very important to notice here that <m>P(X|Y=y)</m> IS A PROBABILITY OF X, just under some condition. That is, in the joint space <m>\Omega</m> of <m>X</m> and <m>Y</m>, you will collect all the points that correspond to a particular value of <m>Y</m>, say <m>Y=y_1</m>. Now, looking at only those, what can you say about the chances for different values of <m>X</m>. Clearly, conditional probability is trying to capture using some knowledge about the world and thus, reducing the uncertainty. 
+        </p>
+        
+    </subsection>
+    
+    <example>
+        <statement>
+            <p>
+                Suppose 1000 patients presented symptoms of a disease A. All patients were given a test. Only 200 of the tests came out positive. When later on, we find out which of the patients had the disease and whether test came out positive or not, we construct a table given below. Use it to figure out joint probabilities, marginal probabilities, and conditional probabilities.
+            </p>
+            <table xml:id="tab-patient-data-for-jt-and-conditional-probs">
+                <title>Patient Data</title>
+                <tabular>
+
+                    <row>
+                        <cell></cell><cell>Test <m>+</m></cell><cell>Test <m>-</m></cell>
+                    </row>
+                    <row>
+                        <cell>Disease</cell><cell><m>150</m></cell><cell><m>50</m></cell>
+                    </row>
+                    <row>
+                        <cell>No Disease</cell><cell><m>300</m></cell><cell><m>500</m></cell>
+                    </row>                    
+                </tabular>
+            </table>
+        </statement>
+        <solution>
+            <p>
+                For Joint probabilities, we can divide number in each square by the total number of patients, which <m>1000</m> here.
+            <table xml:id="tab-jt-probs-disease-test">
+                <title>Joint Probabilities</title>
+                <tabular>
+                    <row>
+                        <cell></cell><cell>Test <m>+</m></cell><cell>Test <m>-</m></cell>
+                    </row>
+                    <row>
+                        <cell>Disease</cell><cell><m>p</m>(Disease, <m>+</m>)<m> = 0.150</m></cell><cell><m>p</m>(Disease, <m>-</m>)<m> = 0.050</m></cell>
+                    </row>
+                    <row>
+                        <cell>No Disease</cell><cell><m>p</m>(No Disease, <m>+</m>) <m> = 0.300</m></cell><cell><m>p</m>(No Disease, <m>-</m>)<m> =0.500</m></cell>
+                    </row>                    
+                </tabular>
+            </table>
+            Clearly, they add up to <m>1</m>, as they should.
+            </p>
+            <p>
+                Now, to get the marginal probability <m>P(X)</m>, where <m>X</m> stands for Disease or No Disease. We just sum over each row here, , i.e., we <alert>margin over the test results</alert>.
+            <table xml:id="tab-marginal-probs-disease">
+                <title>Margin Probabilities of X</title>
+                <tabular>
+                    <row>
+                        <cell><m>p</m>(Disease)<m> = 0.150 + 0.050 = 0.200</m></cell>
+                    </row>
+                    <row>
+                        <cell><m>p</m>(No Disease) <m> = 0.300 + 0.500 = 0.800</m></cell>
+                    </row>                    
+                </tabular>
+            </table>                
+            </p>
+            <p>
+                To get the marginal probability <m>P(Y)</m>, where <m>Y</m> stands for Test. We just sum over each column here, i.e., we <alert>margin over the disease status</alert>.
+            <table xml:id="tab-margin-probs-test">
+                <title>Margin Probabilities of Y</title>
+                <tabular>
+                    <row>
+                        <cell><m>p</m>(Test = <m>+</m>) <m> = 0.150 + 0.300 = 0.450</m>, </cell> <cell><m>p</m>(Test = <m>-</m>) <m> = 0.050 + 0.500 = 0.550</m></cell>
+                    </row>                   
+                </tabular>
+            </table>
+            </p>
+            <p>
+                We use <alert>conditional probability</alert> answer questions like: what  is the probability of a patient having the disease if he has tested negative? When we look at <xref ref="tab-patient-data-for-jt-and-conditional-probs" />, look at only those cases where people test negative. That gives us the following table
+                <table>
+                    <title>Patients that tested negative</title>
+                    <tabular>
+                        <row>
+                            <cell>Disease</cell><cell>50</cell>
+                        </row>
+                        <row>
+                            <cell>No Disease</cell><cell>500</cell>
+                        </row>
+                    </tabular>
+                </table>
+                Now, we have a total of <m>50+500 = 550</m> cases of which <m>50</m> have disease. So, the <alert>conditional probability </alert> of a patient having the disease even when he has test negative will be
+                <me>
+                    p(X = \text{Disease}| Y = \text{"Test"} -) = \frac{50}{550} = \frac{1}{11}.
+                </me>
+                That is <m>1</m> in <m>11</m> chance he has disease. Try to answer the question: what if a patient has tested positive, what is the probability that he doesn't have the disease? Ans: <m>2/3</m>.
+                
+            </p>
+            <p>
+                You will have eight conditional probabilities in our example here:
+                <md>
+                    <mrow> \amp p(\text{Disease} | \text{Test} - ),\ p(\text{No Disease} | \text{Test} - ) = 1 - p(\text{Disease} | \text{Test} - )</mrow>
+                    <mrow> \amp p(\text{Disease} | \text{Test} + ),\ p(\text{No Disease} | \text{Test} + ) = 1 - p(\text{Disease} | \text{Test} + ) </mrow>
+                    <mrow> \amp p(\text{Test} -  |\text{Disease} ),\ p(\text{Test} +  |\text{Disease}  ) = 1 - p(\text{Test} -  |\text{Disease} )  </mrow>
+                    <mrow> \amp p(\text{Test} -  |\text{No Disease} ),\ p(\text{Test} +  |\text{No Disease}  ) = 1 - p(\text{Test} -  |\text{No Disease} )</mrow>
+                </md>
+                Try computing all of them!
+            </p>
+        
+        </solution>
+    </example>
+
+    <subsection xml:id="subsec-condtional-probability-from-joint-probability">
+        <title>Condtional Probability from Joint Probability</title>
+        <p>
+            TODO
+        </p>
+        
+    </subsection>
+    
     
 </section>
