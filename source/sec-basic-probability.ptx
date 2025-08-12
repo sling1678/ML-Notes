@@ -3,7 +3,10 @@
     <title>Basic Probability</title>
     <introduction>
         <p>
-            Probability is essential in machine learning to model randomness in data and outcomes. Probability tells us how likely an event is to happen. An <alert>event</alert> in the context of probability is a description of an outcome of an experiment and is usually written as a set. For instance, if you toss a coin, the outcome <q>Head</q>  is an event <m>\{H\}</m>, <q>Tail</q> is an event <m>\{T\}</m>, and <q>Either Head Or Tail</q> is the event <m>\{H,\ T\}</m>. 
+            Probability is essential in machine learning to model randomness in data and outcomes. Probability tells us how likely an event is to happen. An <alert>event</alert> in the context of probability is a description of an outcome of an experiment and is usually written as a set. For instance, if you toss a coin, the outcome <q>Head</q>  is an event <m>\{H\}</m>, <q>Tail</q> is an event <m>\{T\}</m>, and <q>Either Head Or Tail</q> is the event <m>\{H,\ T\}</m>. When you list multiple elements in an event, all it means that any of those outcomes will constitute this event having occurred.
+        </p>
+        <p>
+            <alert>Every trial of an experiment</alert> produces a binary answer yes/no to the question whether a particular event is the outcome of this trial. For instance, for a roll of a six-sided die suppose you got 2. That would mean any of the following events occurred: <m>\{2\}</m>, <m>\{1,2\}</m>, <m>\{2,3\}</m>, <m>\{2,4\}</m>, <m>\{2,5\}</m>, >m>\{2,6\}>/m>, <m>\{1,2,3\}</m>, <m>\{1,2,4\}</m>, etc.,i.e., all the events that contains <m>2</m> in it
         </p>
         <p>
             An advantage of using sets to represent events is that you can use union and intersections, to build more complex events. For instance <m>\{H,\ T\} = \{H\}\cup \{T\}</m>.
@@ -48,10 +51,11 @@
                 <mrow> \amp \{HH, HT \}, \{HH, TH \}, \{HH, TT \}, \{HT, TH \}, \{HT, TT \}, \{TH, TT \}, </mrow>
                 <mrow> \amp \{HH, HT, TH \}, \{HH, HT, TT \}, \{HH, TH, TT \}, \{HT, TH, TT \}, \Omega \}.</mrow>
             </md>
-        <p>
+        
             To complete the picture, we also need a <alert>Probability Measure <m>P</m>:</alert> that assigns a real number to each event <m>E</m> of the event space <m>F</m>. Let us work out <m>P</m> for the two toss of a single coin problem we have above.
-            
-        </p>
+        </p> 
+        <p>  
+        
 
             If the coin was a fair coin, the four elementary outcomes in <m>\Omega</m> will all be equally likely, givin probability of the elementary events.
             <me>
@@ -114,12 +118,14 @@
                 <mrow> \amp P(E_1 \cup E_2) = P(E_1) + P(E_2) - P(E_1 \cap E_2). </mrow>
             </mdn>
             The last one can be easily seen by drawing a ven diagram with events <m>E_1</m> and <m>E_2</m> overlapping as shown in <xref ref="fig-venn-diagram-E1-E2"/>.
+        </p> 
             <figure xml:id="fig-venn-diagram-E1-E2">
                 <caption>Venn Diagram showing two events <m>E_1</m> and <m>E_2</m> that have an overlap shown by <m>E_1\cap E_2</m>, the intersection of them. When you combine the two events by their union, you need to exclude their intersection since they are counted twice, once in <m>E_1</m> and second time in <m>E_2</m>.</caption>
                 <image source="./images/essential-probability-and-statistics/venn-diagram-E1-E2.png">
-                    <shortdescription>Venn Diagram showing two events <m>E_1</m> and <m>E_2</m> that have an overlap shown by <m>E_1\cap E_2</m>, the intersection of them.</shortdescription>
+                    <shortdescription>Venn Diagram showing two events E1 and E2 that have an overlap shown by their intersection in the set notation.</shortdescription>
                 </image>
             </figure>
+        <p>. 
             A concrete example may help here. Suppose you have a six-sided die. Let <m>E_1 = \{1, 3, 5\}</m> and <m>E_2 = \{3,5,6\}</m>. The union of the two will be <m>E_1 \cup E_2 = \{1,3,5,6\} </m> and the intersection will be <m>E_1 \cap E_2 = \{3,5\}</m>. Note that the list of faces in <m>E_1</m> is saying that the roll will be either <m>1</m>, <m>3</m>, or <m>5</m>. Similarly for <m>E_2</m>.  Then, we have
             <md>
                 <mrow> \amp P(E_1) = P('1') + P('3') + P('5'). </mrow>
