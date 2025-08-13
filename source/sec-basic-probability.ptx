@@ -9,7 +9,7 @@
             <alert>Every trial of an experiment</alert> produces a binary answer yes/no to the question whether a particular event is the outcome of this trial. For instance, for a roll of a six-sided die suppose you got 2. That would mean any of the following events occurred: <m>\{2\}</m>, <m>\{1,2\}</m>, <m>\{2,3\}</m>, <m>\{2,4\}</m>, <m>\{2,5\}</m>, >m>\{2,6\}>/m>, <m>\{1,2,3\}</m>, <m>\{1,2,4\}</m>, etc.,i.e., all the events that contains <m>2</m> in it
         </p>
         <p>
-            An advantage of using sets to represent events is that you can use union and intersections, to build more complex events. For instance <m>\{H,\ T\} = \{H\}\cup \{T\}</m>.
+            An advantage of using sets to represent events is that you can use union and intersections, to build more complex events. For instance event <m>\{H,\ T\} = \{H\}\cup \{T\}</m>, which must always be true since it represents the event that in a toss, you got either <m>H</m> or <m>T</m> and those are the only two possibilities.
         </p>
     </introduction>
 
@@ -21,18 +21,21 @@
         </p> 
         <p>
             <alert>Sample Space <m>\Omega</m>: </alert>
-            The<alert>sample space</alert> <m>\Omega</m> is the set of all unique outcomes in the  experiment of interest. For instance, in the case of a single roll of a six-sided die, you can get only <m>1, 2, 3, 4, 5, \text{or}, 6</m>. Therefore, set <m>\Omega = \{1, 2, 3, 4, 5, 6 \}</m>. 
+            The<alert>sample space</alert> <m>\Omega</m> is the set of all unique outcomes in the  experiment of interest. For instance, in the case of a single roll of a six-sided die, you can get only <m>1, 2, 3, 4, 5, \text{or}, 6</m>. Therefore, set <m>\Omega = \{1, 2, 3, 4, 5, 6 \}</m>. For a coin toss, <m>\Omega = \{ H, T\}</m>, where <m>H</m> is Heads and <m>T</m> is Tails.
         </p>  
         <p> 
             <alert>Event Space <m>F</m>:</alert>
-            Event Space <m>F</m> be the set of all subsets of <m>\Omega</m>, including the empty set, <m>\varnothing = \{\}</m>. If <m>\Omega</m> has <m>N</m> elements, then, <m>F</m> will have <m>2^N</m> elements. In the case of the six-sided die, the number of elements in <m>F</m> will be <m>2^6 = 64</m>. That's too large to list in example here. 
+            Event Space <m>F</m> be the set of all subsets of <m>\Omega</m>, including the empty set, <m>\varnothing = \{\}</m>. Each event consists of none, one or any number of elementary outcomes listed in <m>\Omega</m> and represents all outcomes that would constitute that event if any of those was the result of that trial. Thus, if an event in a six-sided die roll is <m>E = \{3, 5\}</m> and if you roll the die and get a <m>3</m> or <m>4</m>, you will record that event <m>E</m> occurred and if neither showed up, i.e., you got <m>1, 2, 4, \text{or}\ 6</m>, then event <m>E</m> dis not occur in that trial. 
+        </p>
+        <p>
+            If <m>\Omega</m> has <m>N</m> elements, then, <m>F</m> will have <m>2^N</m> elements. In the case of the six-sided die, the number of elements in <m>F</m> will be <m>2^6 = 64</m>. That's too large to list in example here. 
         </p>  
         <p>  
             Let's look at another experiment: tossing a coin with two possible outcomes in any single toss. So, <m>\Omega = \{ H, T\}</m>, where <m>H</m> is head and <m>T</m> is tail. The subsets will be 
             <me>
                 F = \{  \{\}\equiv\varnothing, \{H\}, \{T\}, \{H,T\}\equiv\Omega \}
             </me>. 
-            <alert>Note: all events are sets!</alert> Thus, we can talk about union and intersection of events. For instance,
+            <alert>All events are sets of elementary outcomes in the experiment!</alert> Thus, we can talk about union and intersection of events. For instance,
             <me>
                  \{H\} \cap  \{T\} = \varnothing,\ \  \{H\} \cup  \{T\} = \Omega.
             </me> 
@@ -266,5 +269,6 @@
 
         </p>
     </subsection>
+
 
 </section>

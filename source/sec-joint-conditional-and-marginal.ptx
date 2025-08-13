@@ -13,11 +13,11 @@
             We tend to use <alert>capital letter for the name</alert> of the variable and small letters for its values. Thus, for a variable <m>X</m>, the values will be denoted by <m>x_1, x_2, \cdots,</m> etc. Sometimes we will use superscripts to denote values, <m>x^{(1)},x^{(2)}, \cdots </m>. An <alert>event</alert> will now refer to the outcome that in a particular trial, variable <m>X</m> has some value or a set of the possible values. Thus, <m>X=\{x_1\}</m> would be an event and so would be <m>X=\{x_1, x_2\}</m>,  etc. In case of continuous values for <m>X</m>, and event may even be written as <m>x_1 \lt X \le x_2</m>, etc. We will speak about probabilities of these events in a later section.
         </p>
         <p>
-            In our practice, the values of random variables will all be real numbers. Now, if <m>X</m> can take any real number, whether the entire real line or a finite segment of the real line, then we will call such a variable a <alert>continuous variable</alert>. An example of continuous variable will be price of a house, <m>X=\{x| 0 \le x \lt 1,000,000\}</m> if the price cannot be more than <m>1,000,000</m>. On the other hand, if the variable takes on only discrete values, then it will be called <alert>categorical or discrete variable</alert>. An example of discrete variable will fruits of interest in some grocery store <m>X=\{\text{'apple'}, \text{'orange'}, \text{'pear'}, \text{'watermelon'}, \text{'grapes'}}</m> which has five categories.
+            In our practice, the values of random variables will all be real numbers. Now, if <m>X</m> can take any real number, whether the entire real line or a finite segment of the real line, then we will call such a variable a <alert>continuous variable</alert>. An example of continuous variable will be price of a house, <m>X=\{x| 0 \le x \lt 1,000,000\}</m> if the price cannot be more than <m>1,000,000</m>. On the other hand, if the variable takes on only discrete values, then it will be called <alert>categorical or discrete variable</alert>. An example of discrete variable will fruits of interest in some grocery store <m>X=\{ \text{'apple'}, \text{'orange'}, \text{'pear'}, \text{'watermelon'}, \text{'grapes'} \}</m> which has five categories.
         </p>
         <p>
             The probability measure <m>P</m> of a probability space <m>(\Omega, F, P)</m> of a categorical variable has to specify probabilities of each of the elements of finite set <m>\Omega</m>. Let there be <m>N</m> distinct values of of a categorical variable <m>X</m>, say, <m>x_1, x_2, \cdots, x_N</m>. Then, all we need to specify <m>P</m> are the numbers <m>p_i</m> for each unique/exclusive outcome.
-            <men xml:id="eqn-probaility-mass-function">
+            <men xml:id="eqn-probability-mass-function">
                 P(X=x_i) = p_i
             </men>
             Note that due to normalization, the probability of event <m>\Omega</m>, will be 1.
@@ -90,8 +90,8 @@
         <p>
             It turns out that the marginal probabilities can be obtained from joint probabilities by just summing out the other variable's values in the joint probability. Thus, in our example, the p_1 and p_2 of <m>X</m> alone will be
             <md>
-                <mrow>p_1 \amp p_{11} + p_{12} \equiv \sum_{y=1}^2 P(X=1,Y=y) </mrow>
-                <mrow>p_2 \amp p_{21} + p_{22} \equiv \sum_{y=1}^2 P(X=2,Y=y) </mrow>
+                <mrow>p_1 \amp = p_{11} + p_{12} \equiv \sum_{y=1}^2 P(X=1,Y=y) </mrow>
+                <mrow>p_2 \amp = p_{21} + p_{22} \equiv \sum_{y=1}^2 P(X=2,Y=y) </mrow>
             </md>
             Same will be the case if you are interested in the marginal probability of <m>Y</m>.
         </p>
@@ -206,9 +206,9 @@
 
 
     <subsection xml:id="subsec-conditional-probability-from-joint-probability">
-        <title>Relation between Conditional Probability and Joint Probability</title>
+        <title>Bayes' Rule</title>
         <p>
-            Before I present the relation between conditional probability and joint probability, let's recall that joint probability of two variables <m>X</m> and <m>Y</m> is probability over the space of <m>(X,Y)</m>-space, but the conditional probability of <m>X</m> given <m>Y=y_i</m>, P(X,Y=y_i) is over <m>X</m>-space on a lice of <m>P(X,Y)</m> with <m>Y=y_i</m>, where <m>y_i</m> is a particular value of <m>Y</m>. 
+            Before we discuss Bayes' rule, let's find the relation between Conditional Probability and Joint Probability. Recall that joint probability of two variables <m>X</m> and <m>Y</m> is probability over the space of <m>(X,Y)</m>-space, but the conditional probability of <m>X</m> given <m>Y=y_i</m>, <m>P(X,Y=y_i)</m> is over <m>X</m>-space on a lice of <m>P(X,Y)</m> with <m>Y=y_i</m>, where <m>y_i</m> is a particular value of <m>Y</m>. 
         </p>
         <p>
             By product rule of probabilities, it's clear that 
@@ -305,14 +305,19 @@
     </subsection>
 
 
-        <subsection xml:id="subsec-Independent-Variables">
+    <subsection xml:id="subsec-Independent-Variables">
         <title>Independent Variables</title>
         <p>
             Two random variables are said to be independent if their joint probability factors in the product of their marginal probabilities.
             <men xml:id="eqn-independent-variables">
                 P(X,Y) = P(X) P(Y)\ \ \text{(Independent variables)}
             </men>
-            Now, we write the left side using marginal and conditional probabilities.
+            Keep in mind that behind the scene, probabilities in this equation are over events, i.e., it's for <m>X</m> having some particular value and <m>Y</m> having its own particular value. If <m>X</m> and <m>Y</m> are independent variables, we aexpect
+            <me>
+                P(X = x_i\, \text{and}\, Y-+y_j) = P(X=x_i) P(Y=y_j)\ \ \text{for all }x_i \text{ and } y_j.
+            </me>
+            We wouldn't write our equations in the verbose manner, prefering to keep it simple. But, beware that probabilities are probabilities of events! 
+            Now, we write the left side of Eq. <xref ref="eqn-independent-variables"/> using marginal and conditional probabilities.
             <me>
                 P(X|Y)P(Y) = P(X) P(Y)\ \ \text{(Independent variables)}
             </me>
@@ -320,11 +325,42 @@
             <me>
                  P(X|Y) = P(X)\ \ \text{(Independent variables)}
             </me>
-            That is knowing anything about <m>Y</m> does not tell you anything about probability of <m>X</m>.
+            That is knowing something about <m>Y</m> does not tell you anything about probability of <m>X</m>. That is, conditioning on <m>Y</m> is useless when <m>X</m> and <m>Y</m> are independent.
             
             
         </p>
         
     </subsection>
-    
+    <subsection xml:id="subsec-Complications-For-Continuous-Variables">
+        <title>Complications-For-Continuous-Variables</title>
+        <p>
+            In our discussions above, we spoke about probability space of a random variable <m>X</m> and spoke of probability of <m>X=x_i</m>, viz. <m>P(X=X_i)</m>. This works out nicely if <m>X</m> has only a finite number of discrete values, e.g., it is categorical variable. In that case we call <m>P(X</m> a <alert>probability mass function</alert>. However, when <m>X</m> is a continuous variable, say <m>0\le X\le 1</m>, then there are infinitely many values that <m>X</m> can take. In that case, probability for any one of the values will be zero. For instance, probability that <m>X=0.1</m> will be 0
+            <me>
+                P(X=0.1) = 0.
+            </me>
+            So, it is not a useful concept. We replace this probability with probability of <m>X</m> in a range, e.g.
+            <me>
+                P( 0.1 \le X \le 0.3 ), \text{Probability that outcome of the experiment will lie in the range of 0.1 to 0.3}.
+            </me>
+            To help with computing such probabilities, we introduce a concept of probability density <m>f(x)</m> such that probability of outcome of an experiment falling in an infinitesimal range <m>x \le X \le x+dx</m> will be
+            <men xml:id="eqn-probability-density">
+                P(x \le X \le x+dx) = f(x)\,dx.
+            </men>
+            Then, probability in a range will just be an integral over that range
+            <me>
+                P( 0.1 \le X \le 0.3 ) =  \int_{0.1}^{0.3}\, f(x)\,dx.
+            </me>
+            The probability density must be such that when integrated over all possible outcomes, i.e., the set <m>\Omega</m>, it should give a value of 1. Thus in the case of outcomes being in the range <m>0 \le X \le 1</m>, we require the following normalization condition.
+            <men xml:id="eqn-probability-density-normalized">
+                P( \Omega ) =  \int_{\text{full range}}\, f(x)\,dx = 1.
+            </men>
+            You may have heard of a Gaussian probability density of a variable <m>X</m>, whose range of possibilities is the entire real line, i.e., <m>-\infty \lt X \lt +\infty</m>, the probability density with mean <m>\mu</m> and standard deviation <m>\sigma</m> is
+            <men xml:id="eqn-gaussian-probability-density">
+                f(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\, e^{ -\frac{(x-\mu)^2}{2\sigma^2} },
+            </men>
+            where the factor in front of the exponential makes sure that ir is properly normalized to give 1.
+            
+        </p>
+        
+    </subsection>
 </section>
