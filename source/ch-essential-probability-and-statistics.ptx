@@ -14,6 +14,9 @@
   
   <xi:include href="sec-basic-probability.ptx" />
   <xi:include href="sec-joint-conditional-and-marginal.ptx" />
+  <xi:include href="sec-example-probability-distributions.ptx" />
+
+  
 
 
 </chapter>

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section xml:id="sec-Joint-Conditional-and-Marginal-Probabilities">
     <title>Joint, Conditional and Marginal Probabilities</title>
-    <p>
-        In this section, we address probabilities in situation when you have more than one variable. Whether they are independent or not independent makes a difference. Let's first define a variable in the context of probability and statistics.
-    </p>
+    <introduction>
+        <p>
+            In this section, we address probabilities in situation when you have more than one variable. Whether they are independent or not independent makes a difference. Let's first define a variable in the context of probability and statistics.
+        </p>
+    </introduction>
+
     <subsection xml:id="subsec-Random-Variables">
         <title>Random Variables, Probabilities, and Expections</title>
         <p>
@@ -300,7 +303,9 @@
             </me>
             That is <m>8.4\%</m>.
         </p>  
-            
+        <p>
+            My example above came from the following good set of example problems from University of Pennsylvania website, where you can find other examples to practice. <url ref="https://www2.math.upenn.edu/~mmerling/math107%20docs/practice%20on%20Bayes%20solutions.pdf"> Practice Bayes Problems</url>.
+        </p>
         
     </subsection>
 
@@ -333,34 +338,146 @@
     </subsection>
     <subsection xml:id="subsec-Complications-For-Continuous-Variables">
         <title>Complications-For-Continuous-Variables</title>
-        <p>
-            In our discussions above, we spoke about probability space of a random variable <m>X</m> and spoke of probability of <m>X=x_i</m>, viz. <m>P(X=X_i)</m>. This works out nicely if <m>X</m> has only a finite number of discrete values, e.g., it is categorical variable. In that case we call <m>P(X</m> a <alert>probability mass function</alert>. However, when <m>X</m> is a continuous variable, say <m>0\le X\le 1</m>, then there are infinitely many values that <m>X</m> can take. In that case, probability for any one of the values will be zero. For instance, probability that <m>X=0.1</m> will be 0
-            <me>
-                P(X=0.1) = 0.
-            </me>
-            So, it is not a useful concept. We replace this probability with probability of <m>X</m> in a range, e.g.
-            <me>
-                P( 0.1 \le X \le 0.3 ), \text{Probability that outcome of the experiment will lie in the range of 0.1 to 0.3}.
-            </me>
-            To help with computing such probabilities, we introduce a concept of probability density <m>f(x)</m> such that probability of outcome of an experiment falling in an infinitesimal range <m>x \le X \le x+dx</m> will be
-            <men xml:id="eqn-probability-density">
-                P(x \le X \le x+dx) = f(x)\,dx.
-            </men>
-            Then, probability in a range will just be an integral over that range
-            <me>
-                P( 0.1 \le X \le 0.3 ) =  \int_{0.1}^{0.3}\, f(x)\,dx.
-            </me>
-            The probability density must be such that when integrated over all possible outcomes, i.e., the set <m>\Omega</m>, it should give a value of 1. Thus in the case of outcomes being in the range <m>0 \le X \le 1</m>, we require the following normalization condition.
-            <men xml:id="eqn-probability-density-normalized">
-                P( \Omega ) =  \int_{\text{full range}}\, f(x)\,dx = 1.
-            </men>
-            You may have heard of a Gaussian probability density of a variable <m>X</m>, whose range of possibilities is the entire real line, i.e., <m>-\infty \lt X \lt +\infty</m>, the probability density with mean <m>\mu</m> and standard deviation <m>\sigma</m> is
-            <men xml:id="eqn-gaussian-probability-density">
-                f(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\, e^{ -\frac{(x-\mu)^2}{2\sigma^2} },
-            </men>
-            where the factor in front of the exponential makes sure that ir is properly normalized to give 1.
+        <subsubsection xml:id="subsubsec-Probability-Density">
+            <title>Probability Density</title>
+
+            <p>
+                In our discussions above, we spoke about probability space of a random variable <m>X</m> and spoke of probability of <m>X=x_i</m>, viz. <m>P(X=X_i)</m>. This works out nicely if <m>X</m> has only a finite number of discrete values, e.g., it is categorical variable. In that case we call <m>P(X</m> a <alert>probability mass function</alert>. However, when <m>X</m> is a continuous variable, say <m>0\le X\le 1</m>, then there are infinitely many values that <m>X</m> can take. In that case, probability for any one of the values will be zero. For instance, probability that <m>X=0.1</m> will be 0
+                <me>
+                    P(X=0.1) = 0.
+                </me>
+                So, it is not a useful concept. We replace this probability with probability of <m>X</m> in a range, e.g.
+                <me>
+                    P( 0.1 \le X \le 0.3 ), \text{Probability that outcome of the experiment will lie in the range of 0.1 to 0.3}.
+                </me>
+                To help with computing such probabilities, we introduce a concept of probability density <m>\rho(x)</m>, which will be probability per unit of <m>x</m>. Now, probability of outcome of an experiment falling in an infinitesimal range <m>x \le X \le x+dx</m> will be
+                <men xml:id="eqn-probability-density">
+                    P(x \le X \le x+dx) = \rho(x)\,dx.
+                </men>
+                Then, probability in a range will just be an integral over that range
+                <me>
+                    P( 0.1 \le X \le 0.3 ) =  \int_{0.1}^{0.3}\, \rho(x)\,dx.
+                </me>
+                The probability density must be such that when integrated over all possible outcomes, i.e., the set <m>\Omega</m>, it should give a value of 1. Thus in the case of outcomes being in the range <m>0 \le X \le 1</m>, we require the following normalization condition.
+                <men xml:id="eqn-probability-density-normalized">
+                    P( \Omega ) =  \int_{\text{full range}}\, \rho(x)\,dx = 1.
+                </men>
+                You may have heard of a Gaussian probability density of a variable <m>X</m>, whose range of possibilities is the entire real line, i.e., <m>-\infty \lt X \lt +\infty</m>, the probability density  with mean <m>\mu</m> and standard deviation <m>\sigma</m> is
+                <men xml:id="eqn-gaussian-probability-density">
+                    \rho(x) = \frac{1}{\sqrt{2\pi \sigma^2}}\, e^{ -\frac{(x-\mu)^2}{2\sigma^2} },
+                </men>
+                where the factor in front of the exponential makes sure that ir is properly normalized to give 1.
+                
+            </p>
             
-        </p>
-        
+        </subsubsection>
+        <subsubsection xml:id="subsubsec-Cumulative-Distribution-Function">
+            <title>Cumulative Distribution Function (CDF)</title>
+            <p>
+                Since continuous variables take values on real axis, their values are ordered. Therefore, we define a very important property called cumulative distribution function, often just the distribution function or CDF, to be denoted by <m>F(x)</m> by integrating the probability density function <m>p(x)</m> from <m>x=-\infty</m> to <m>x</m>.
+
+                <men xml:id="eqn-distribution-function">
+                    F(x) = \int_{-\infty}^x\, \rho(x)\, dx
+                </men>
+                Clearly, distribution function is probability of the event that the random variable <m>X</m> is in the range <m>-\infty \lt X \le x</m>.
+                <men xml:id="eqn-distribution-func-as-prob">
+                    F(x) = P( \{ -\infty \lt X \le x \} ) \equiv P( -\infty \lt X \le x ).
+                </men>
+                It is readily seen that probability of <m>X</m> over any finite range <m>a \le X \le b</m> will simply be
+                <men xml:id="eqn-probability-over-a-range-and-">
+                    P( a \le X \le b ) = F(b) - F(a).
+                </men>
+                From complementarity of events <m>\{  -\infty \lt X \le x \}</m> and  <m>\{  X \gt x \}</m>, we immediately know that
+                <men xml:id="eqn-rpob-for-X-gt-x">
+                    P( X > x) = 1 - P( -\infty \lt X \le x ) = 1 - F(x).
+                </men>
+                Using the fundamental theorem of Calculus, it is immediately obvious that probability density is just the detivative of the distribution function.
+                <men xml:id="eqn-prob-density-as-derivative">
+                    \rho(x) = \frac{dF}{dx}.
+                </men>
+            </p>
+            <p>
+                Cumulative distribution function of Gaussian distribution with mean <m>\mu=0</m> and unit standard deviation <m>\sigma=1</m> is highly used in interpretive statistics. There, it is often given a different symbol, <m>\Phi(x)</m>.
+                <men xml:id="eqn-distribution-function-Normal">
+                    \Phi(x) = \int_{-\infty}^{x}\, \frac{1}{\sqrt{2}}\,\exp\left(-x^2/2\right)\, dx.
+                </men>
+                From complementarity of events <m>\{  -\infty \lt X \le x \}</m> and  <m>\{  X \gt x \}</m>, it is clear that
+                <me>
+                    P( X > x) = 1 - \Phi(x).
+                </me>
+                This is used in finding the remaining probability in the tail part of a Gaussian. For instance, in some application, we may want to know, how much probability is after <m>x = 2.5</m> in a Gaussian variable <m>X</m>.
+                <me>
+                     P( X > 2.5) = 1 - \Phi(2.5).
+                </me>
+                These are easily computed by almost every stat package. For instance in Python's scipy library there is a powerful stats package. 
+                
+                
+            </p>
+            <program language="python">
+                <code>
+                    import numpy as np
+                    import matplotlib.pyplot as plt
+                    from scipy.stats import norm
+
+                    # === PARAMETERS OF THE NORMAL DISTRIBUTION ===
+                    mu = 0       # mean
+                    sigma = 1    # standard deviation
+                    dist = norm(loc=mu, scale=sigma)
+
+                    # === RANGE OF VALUES FOR PLOTS ===
+                    x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
+
+                    # === PDF AND CDF CALCULATION ===
+                    pdf_values = dist.pdf(x)
+                    cdf_values = dist.cdf(x)
+
+                    # === PLOTTING ===
+                    fig, ax = plt.subplots(1, 2, figsize=(12, 5))
+
+                    # --- PDF plot ---
+                    ax[0].plot(x, pdf_values, label=f'N({mu}, {sigma**2}) PDF', color='blue')
+                    ax[0].set_title("Normal Distribution - PDF")
+                    ax[0].set_xlabel("x")
+                    ax[0].set_ylabel("Density")
+                    ax[0].grid(True)
+                    ax[0].legend()
+
+                    # --- CDF plot ---
+                    ax[1].plot(x, cdf_values, label=f'N({mu}, {sigma**2}) CDF', color='red')
+                    ax[1].set_title("Normal Distribution - CDF")
+                    ax[1].set_xlabel("x")
+                    ax[1].set_ylabel("Cumulative Probability")
+                    ax[1].grid(True)
+                    ax[1].legend()
+
+                    plt.tight_layout()
+                    plt.show()
+
+                    # === PROBABILITY FOR GIVEN x ===
+                    x_value = 2.0 # 2 times the standard deviation which is 1 here
+                    prob_less_than = dist.cdf(x_value)
+                    prob_greater_than = 1 - prob_less_than
+                    print(f"P(X <m>\le</m> {x_value}) = {prob_less_than:.4f}") // P(X <m>\le</m> 2.0) = 0.9772
+                    print(f"P(X <m>\gt</m> {x_value}) = {prob_greater_than:.4f}") //P(X <m>\gt</m> 2.0) = 0.0228
+
+                    # === x-value FOR GIVEN PROBABILITY ===
+                    p_value = 0.99  # 99% quantile
+                    x_at_p = dist.ppf(p_value)
+                    print(f"x such that P(X <m>\le,</m> x) = {p_value} is x = {x_at_p:.4f}") // x such that P(X <m>\le</m>x) = 0.99 is x = 2.3263
+
+                    # === PROBABILITY BETWEEN TWO VALUES ===
+                    x_low, x_high = -1.0, 1.0
+                    prob_between = dist.cdf(x_high) - dist.cdf(x_low)
+                    print(f"P({x_low} <m>\le</m> X <m>\le</m> {x_high}) = {prob_between:.4f}")// P(-1.0 <m>\le</m> X <m>\le</m> 1.0) = 0.6827
+                </code>
+            </program>
+            <figure xml:id="fig-psd-anf-cdf-of-normal-function">
+                <caption>PDF and CDF of Gaussian distribution.</caption>
+                <image source="./images/essential-probability-and-statistics/pdf_and_cdf_normal_distribution.png">
+                    <shortdescription>PDF and CDF of Gaussian distribution.</shortdescription>
+                </image>
+            </figure>
+            
+        </subsubsection>      
     </subsection>
 </section>
