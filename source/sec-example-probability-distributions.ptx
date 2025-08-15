@@ -15,18 +15,29 @@
                 <men xml:id="eqn-Bernoulli-Omega">
                     \Omega = \{ X=0, X=1\}
                 </men>
-                We call such random variables <m>Bernoulli variables</m>.
-            </p>  
-            <sidebyside>
+                We call such random variables <alert>Bernoulli variables</alert>. The values of probability of each value of <m>X</m> gives us the Probability Mass Function (PMF) of the Bernoulli distribution. Suppose probability of <m>(X=1)</m> is <m>p</m>. Then, probability of <m>(X=0)</m> will be <m>1-p</m>. 
+                    <mdn>
+                        <mrow xml:id="eqn-Bernoulli-X1-choice">P(X=1) \amp = p</mrow>
+                        <mrow xml:id="eqn-Bernoulli-X0-choice">P(X=0) \amp = 1 - p \equiv q</mrow>
+                    </mdn>
+                Sometimes <m>1-p </m> is denote by <m>q</m>, with <m>p+q=1</m>. 
+            </p> 
+            
+            <p>
+                The separate listing of the probability of the two values of <m>X</m> in Eqs. <xref ref="eqn-Bernoulli-X1-choice"/> and <xref ref="eqn-Bernoulli-X0-choice"/> can actually be written more conveniently in one formula.
+                <men xml:id="eqn-Bernoulli-prob-in-one-formula">
+                    P(X=x) = p^x\:(1-p)^{1-x}.
+                </men>
+                From this formula, you will get <m>P(X=1)</m> and <m>P(X=0)</m> by substitting appropriate value of <m>x</m>.
+                
+            </p>
+            <sidebyside widths="45% 10% 45%">
 
                 <p>  
-                    Suppose probability of <m>(X=1)</m> is <m>p</m>. Then, probability of <m>(X=0)</m> will be <m>1-p</m>, which we usually denote by <m>q</m>, with <m>p+q=1</m>. 
-                    <md>
-                        <mrow>P(X=1) \amp = p</mrow>
-                        <mrow>P(X=0) \amp = 1 - p \equiv q</mrow>
-                    </md>
-                    
-                    Graphically, Bernoulli distribution is plotted as bars with a dot at the top of the bar. Figure to the side shows an illustration with <m>p=0.6</m>.
+                    Graphically, Bernoulli distribution is plotted as bars with a dot at the top of the bar. Figure to the side shows an illustration with <m>p=0.6</m> for <m>X=1</m>, and of course, <m>q= 0.4</m> for <m>X=0</m>.
+                </p>
+                <p>
+                      
                 </p>
                 <image source="./images/essential-probability-and-statistics/bernoulli-distribution.png">
                     <shortdescription>Bernoulli distribution with <m>p=0.6</m>.</shortdescription>
@@ -34,7 +45,7 @@
             </sidebyside>
 
             <p>
-                From the distribution, we can find the mean of a Bernoulli variable by weighing each value of <m>X</m> with its probability as it should be for any other type of variable.
+                For any distribution, we can find the mean of variable <m>X</m> by weighing each value of <m>X</m> with its probability.
                 <men xml:id="eqn-mean-of-Bernoulli-variable">
                     \langle X \rangle = 0 \times P(X=0) + 1\times P(X=1) = 0 + p = p
                 </men>
@@ -51,6 +62,7 @@
                     \sigma = \sqrt{ \text{Var}(X) } = \sqrt{p(1-p)}.
                 </men>
             </p>
+
             
             
         </subsubsection>
