@@ -3,7 +3,58 @@
     <title>Example Probability Distributions</title>
     <introduction>
         <p>
+            Distributions describe how probabilities are spread across values of a random variable. We will given examples of <alert>Probability Mass Function (PMF)</alert> for the discrete random variables and <alert>Probability Density Function (PDF)</alert> for continuous random variable.
         </p>
     </introduction>
+    <subsection xml:id="subsec-Discrete-Random-Variables">
+        <title>Discrete Random Variables</title>
+        <subsubsection xml:id="subsubsec-Bernoulli-Distribution">
+            <title>Bernoulli Distribution</title>
+            <p>
+                the outcome of each elementary event of a Bernoulli trial is either a failure or success of something 9false or true of some statement, or any myriads of two states problems, which is usually represented by a random variable <m>X</m> having values <m>0</m> and <m>1</m>. That is
+                <men xml:id="eqn-Bernoulli-Omega">
+                    \Omega = \{ X=0, X=1\}
+                </men>
+                We call such random variables <m>Bernoulli variables</m>.
+            </p>  
+            <sidebyside>
+
+                <p>  
+                    Suppose probability of <m>(X=1)</m> is <m>p</m>. Then, probability of <m>(X=0)</m> will be <m>1-p</m>, which we usually denote by <m>q</m>, with <m>p+q=1</m>. 
+                    <md>
+                        <mrow>P(X=1) \amp = p</mrow>
+                        <mrow>P(X=0) \amp = 1 - p \equiv q</mrow>
+                    </md>
+                    
+                    Graphically, Bernoulli distribution is plotted as bars with a dot at the top of the bar. Figure to the side shows an illustration with <m>p=0.6</m>.
+                </p>
+                <image source="./images/essential-probability-and-statistics/bernoulli-distribution.png">
+                    <shortdescription>Bernoulli distribution with <m>p=0.6</m>.</shortdescription>
+                </image>
+            </sidebyside>
+
+            <p>
+                From the distribution, we can find the mean of a Bernoulli variable by weighing each value of <m>X</m> with its probability as it should be for any other type of variable.
+                <men xml:id="eqn-mean-of-Bernoulli-variable">
+                    \langle X \rangle = 0 \times P(X=0) + 1\times P(X=1) = 0 + p = p
+                </men>
+                Similarly we can find the expectation value of any power of <m>X</m>. For instance, the expectation value of the <m>n^\text{th}</m> power of <m>X</m> will be
+                <men xml:id="eqn-expectation-of-Bernoulli-variable">
+                    \langle X^n \rangle = 0^n \times P(X=0) + 1^n\times P(X=1) = 0 + p = p
+                </men>
+                Thus, variance of a Bernoulli variable will be
+                <men xml:id="eqn-Variance-of-Bernoulli-variable">
+                    \text{Var}(X) = \langle X^2 \rangle - (\langle X \rangle)^2 = p - (p)^2 = p(1-p).
+                </men>
+                Therefore, the standard deviation, <m>\sigma</m> ,of Bernoulli variable is
+                <men xml:id="eqn-stdev-Bernoulli-variable">
+                    \sigma = \sqrt{ \text{Var}(X) } = \sqrt{p(1-p)}.
+                </men>
+            </p>
+            
+            
+        </subsubsection>
+        
+    </subsection>
 
 </section>
